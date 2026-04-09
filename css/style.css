@@ -1,0 +1,41 @@
+header {
+    background-color: #0d47a1;
+    color: #ffffff;
+}
+
+header a {
+    font-size: large;
+    color: #ffc107 !important;
+    text-decoration: none;
+}
+
+header img {
+    height: 120px;
+    object-fit: contain;
+    margin-right: 8px;
+}
+
+header .col-md-9 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+header a[href="login.html"] {
+    color: #ffffff !important;
+}
+
+header a[href="registrarse.html"] {
+    color: #ffffff !important;
+}
+
+.carousel-destacado img {
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 8px;
+}
