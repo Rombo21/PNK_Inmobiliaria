@@ -1,0 +1,31 @@
+# Archivos de sistema operativo
+Thumbs.db
+.DS_Store
+*.log
+
+# Archivos de IDE
+.vscode/
+.idea/
+
+# Dependencias de Node.js (si aplica)
+node_modules/
+
+# Archivos de configuración sensibles
+.env
+config.php.bak
+
+# Archivos temporales y cache
+tmp/
+cache/
+*.tmp
+
+# Archivos de base de datos locales (si no se versionan)
+*.db
+*.sqlite
+
+# Archivos de Composer (PHP)
+vendor/
+
+# Archivos de logs de PHP
+error_log
+php_error.log
