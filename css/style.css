@@ -31,15 +31,12 @@ header a[href="login.html"] {
 
 .dropdown:hover .dropdown-menu {
     display: block;
-    margin-top: 0;
+    right: 0;
+    left: auto;
 }
 
 #dropdownRegistro {
     color: #ffffff !important;
-}
-
-#dropdownRegistro:hover {
-    color: #ffc107 !important;
 }
 
 .carousel-destacado img {
