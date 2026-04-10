@@ -29,8 +29,17 @@ header a[href="login.html"] {
     color: #ffffff !important;
 }
 
-header a[href="registrarse.html"] {
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+#dropdownRegistro {
     color: #ffffff !important;
+}
+
+#dropdownRegistro:hover {
+    color: #ffc107 !important;
 }
 
 .carousel-destacado img {
