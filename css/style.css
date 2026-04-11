@@ -1,12 +1,80 @@
+:root {
+    --color-header: #0d47a1;
+    --color-secundario: #1976d2;
+    --color-acento: #ffc107;
+    --color-texto: #ffffff;
+}
+
 header {
-    background-color: #0d47a1;
-    color: #ffffff;
+    background-color: var(--color-header);
 }
 
 header a {
     font-size: large;
-    color: #ffc107 !important;
+    color: var(--color-acento);
+    font-weight: bold;
     text-decoration: none;
+}
+
+header a:hover {
+    color: var(--color-texto);
+    text-decoration: underline;
+}
+
+h2, h3 {
+    color: var(--color-header);
+    font-weight: bold;
+}
+
+.card {
+    border: 1px solid var(--color-secundario);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-title {
+    color: var(--color-header);
+    font-weight: bold;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-warning {
+    background-color: var(--color-acento);
+    color: var(--color-header);
+    font-weight: bold;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    color: var(--color-texto);
+}
+
+footer {
+    background-color: var(--color-header);
+    color: var(--color-texto);
+}
+
+footer a {
+    color: var(--color-acento);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--color-texto);
+    text-decoration: underline;
 }
 
 header img {
@@ -15,28 +83,18 @@ header img {
     margin-right: 8px;
 }
 
-header .col-md-9 {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+.dropdown-menu {
+    background-color: var(--color-header);
 }
 
-header a:hover {
+.dropdown-menu .dropdown-item:hover {
+    color: var(--color-texto);
+    background-color: transparent !important;
     text-decoration: underline;
 }
 
-header a[href="login.html"] {
-    color: #ffffff !important;
-}
-
-.dropdown:hover .dropdown-menu {
-    display: block;
-    right: 0;
-    left: auto;
-}
-
-#dropdownRegistro {
-    color: #ffffff !important;
+.dropdown-item {
+    color: var(--color-acento);
 }
 
 .carousel-destacado img {

@@ -3,37 +3,29 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Login - PNK Inmobiliaria</title>
+    <title>Recuperar Contraseña - PNK Inmobiliaria</title>
     <link rel="icon" href="img/iconoPNK.png">
     <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/login.css">
 </head>
-<body>
-    <div class="admin-top-link">
-        <a href="dashboardadmin.html">Ingresar como administrador -></a>
-    </div>
+<body class="login-page">
     <div class="login-card">
         <div class="text-center mb-4">
-            <a href="index.html"><img src="img/LogoPNK.png" alt="Logo PNK" style="height:120px;"></a>
+        <a href="index.html"><img src="img/LogoPNK.png" alt="Logo PNK" style="height:120px;"></a>
         </div>
-            <form>
+        <p class="text-center text-muted mb-4">Ingresa tu RUT y te enviaremos un correo con instrucciones para restablecer tu contraseña.</p>
+        <form>
             <div class="mb-3">
                 <label for="rut" class="form-label">RUT</label>
                 <input type="text" id="rut" name="rut" class="form-control" placeholder="12345678-9" required>
             </div>
 
-            <div class="mb-3">
-                <label for="password" class="form-label">Contraseña</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-            </div>
+            <button type="submit" class="btn btn-login">Enviar</button>
 
-            <button type="submit" class="btn btn-login">Acceder</button>
-            </form>
             <div class="text-center mt-3">
-                <a href="recuperar.html" class="forgot-link">¿Has olvidado tu contraseña?</a><br>
-                <a href="registropropietario.html" class="forgot-link">¿Quieres registrate como propietario?</a>
-                <a href="index.html" class="forgot-link">Volver al inicio</a>
+                <a href="login.html" class="forgot-link">Volver</a>
             </div>
+        </form>
     </div>
 
     <script src="js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

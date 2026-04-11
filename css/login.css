@@ -1,0 +1,77 @@
+body {
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-card h2 {
+    color: #0d47a1;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #0d47a1;
+}
+
+.btn-login {
+    background-color: #ffc107;
+    color: #0d47a1;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #e0a800;
+    color: #ffffff;
+}
+
+.forgot-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #0d47a1;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: #ffc107;
+    text-decoration: underline;
+}
+
+/* Estilos para el enlace de administrador en la parte superior derecha (SOLO PARA MOSTRAR ENTREGA N°1) */
+.admin-top-link {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.admin-top-link a {
+    font-size: 0.85rem;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.admin-top-link a:hover {
+    color: #ffc107;
+    text-decoration: underline;
+}
+/* Estilos para el enlace de administrador en la parte superior derecha (SOLO PARA MOSTRAR ENTREGA N°1) */
