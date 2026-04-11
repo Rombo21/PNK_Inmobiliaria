@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="col-md-9 text-end d-flex justify-content-end align-items-center">
-                    <a href="#buscador" class="fw-bold mx-2">Buscar Propiedades</a>
+                    <a href="buscador.html" class="fw-bold mx-2">Buscar Propiedades</a>
                     <a href="#contacto" class="fw-bold mx-2">Contactanos</a>
                     <a href="login.html" class="fw-bold mx-2">Iniciar Sesión</a>
                     <div class="dropdown mx-2">
@@ -32,45 +32,13 @@
         </div>
     </header>
 
-    <section id="buscador" class="container my-5">
-        <h2 class="mb-4">Buscador de Propiedades</h2>
-        <form class="row g-3">
-        <div class="col-md-4">
-            <label for="comuna" class="form-label fw-bold">Comuna</label>
-            <select id="comuna" name="comuna" class="form-select">
-            <option>La Serena</option>
-            <option>Coquimbo</option>
-            <option>Vicuña</option>
-            <option>Ovalle</option>
-            <option>Illapel</option>
-            <option>Salamanca</option>
-            </select>
-        </div>
+    <section id="sobre-nosotros" class="container my-5">
+        <h2 class="mb-4">Sobre nosotros</h2>
+        <p>
+            En <strong>PNK Inmobiliaria</strong> trabajamos para conectar a propietarios y gestores freelance con las mejores oportunidades del mercado inmobiliario en la Región de Coquimbo.
+            Nuestro compromiso es ofrecer un servicio transparente, confiable y cercano, adaptado a las necesidades de cada cliente. Creemos en el valor de la colaboración y en la importancia de construir relaciones duraderas basadas en la confianza y el profesionalismo.
+        </p>
 
-        <div class="col-md-4">
-            <label for="provincia" class="form-label fw-bold">Provincia</label>
-            <select id="provincia" name="provincia" class="form-select">
-            <option>Elqui</option>
-            <option>Limarí</option>
-            <option>Choapa</option>
-            </select>
-        </div>
-
-        <div class="col-md-4">
-            <label for="sector" class="form-label fw-bold">Sector</label>
-            <select id="sector" name="sector" class="form-select">
-            <option>El Milagro (La Serena)</option>
-            <option>Las Compañías (La Serena)</option>
-            <option>Centro (Coquimbo)</option>
-            <option>Tierras Blancas (Coquimbo)</option>
-            <option>La Herradura (Coquimbo)</option>
-            </select>
-        </div>
-
-        <div class="col-12">
-            <button type="submit" class="btn btn-warning text-dark fw-bold">Buscar</button>
-        </div>
-        </form>
     </section>
 
     <section class="container my-5">
@@ -121,42 +89,120 @@
 
         <div class="col-md-6">
             <div class="carousel-destacado mb-3">
-            <div id="carruselDepto" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carruselDepto" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#carruselDepto" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#carruselDepto" data-bs-slide-to="2"></button>
-                <button type="button" data-bs-target="#carruselDepto" data-bs-slide-to="3"></button>
+                <div id="carruselDepto" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carruselDepto" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#carruselDepto" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#carruselDepto" data-bs-slide-to="2"></button>
+                        <button type="button" data-bs-target="#carruselDepto" data-bs-slide-to="3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="img/departamento_destacado_1/Fachadasantamargarita-681a1d40816728.webp" alt="Departamento fachada" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/departamento_destacado_1/w-686e56a44df500.webp" alt="Departamento cocina/comedor" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/departamento_destacado_1/w-686e56a73c5243.webp" alt="Departamento living" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/departamento_destacado_1/w-686e56a9e16b61.webp" alt="Departamento dormitorio" class="d-block w-100">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carruselDepto" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carruselDepto" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    </button>
                 </div>
-                <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="img/departamento_destacado_1/Fachadasantamargarita-681a1d40816728.webp" alt="Departamento fachada" class="d-block w-100">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/departamento_destacado_1/w-686e56a44df500.webp" alt="Departamento cocina/comedor" class="d-block w-100">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/departamento_destacado_1/w-686e56a73c5243.webp" alt="Departamento living" class="d-block w-100">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/departamento_destacado_1/w-686e56a9e16b61.webp" alt="Departamento dormitorio" class="d-block w-100">
-                </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carruselDepto" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carruselDepto" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-                </button>
-            </div>
             </div>
             <div class="text-center">
-            <h3>Departamento en La Herradura</h3>
-            <p class="fw-bold">Precio: $89.000.000</p>
-            <a href="#" class="btn btn-warning text-dark fw-bold">Ver más</a>
+                <h3>Departamento en La Herradura</h3>
+                <p class="fw-bold">Precio: $89.000.000</p>
+                <a href="#" class="btn btn-warning text-dark fw-bold">Ver más</a>
             </div>
         </div>
 
+        <div class="col-md-6">
+            <div class="carousel-destacado mb-3">
+                <div id="carruselParcela" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carruselParcela" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#carruselParcela" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#carruselParcela" data-bs-slide-to="2"></button>
+                        <button type="button" data-bs-target="#carruselParcela" data-bs-slide-to="3"></button>
+                        <button type="button" data-bs-target="#carruselParcela" data-bs-slide-to="4"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="img/parcela_destacada_1_ls/porton.webp" alt="Parcela porton" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/parcela_destacada_1_ls/fachada.webp" alt="Parcela fachada" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/parcela_destacada_1_ls/comedor.webp" alt="Parcela comedor" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/parcela_destacada_1_ls/dormitorio.webp" alt="Parcela dormitorio" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/parcela_destacada_1_ls/baño.webp" alt="Parcela baño" class="d-block w-100">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carruselParcela" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carruselParcela" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="text-center">
+                <h3>Parcela en Ovalle</h3>
+                <p class="fw-bold">Precio: $120.000.000</p>
+                <a href="#" class="btn btn-warning text-dark fw-bold">Ver más</a>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="carousel-destacado mb-3">
+                <div id="carruselLimari" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carruselLimari" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#carruselLimari" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#carruselLimari" data-bs-slide-to="2"></button>
+                        <button type="button" data-bs-target="#carruselLimari" data-bs-slide-to="3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="img/casa_destacada_limari/fachada.webp" alt="Propiedad Limarí fachada" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/casa_destacada_limari/comedor living.webp" alt="Propiedad Limarí living" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/casa_destacada_limari/dormitorio grande.webp" alt="Propiedad Dormitorio" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/casa_destacada_limari/terreno.webp" alt="Propiedad Limarí terreno" class="d-block w-100">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carruselLimari" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carruselLimari" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="text-center">
+                <h3>Propiedad en Limarí</h3>
+                <p class="fw-bold">Precio: $105.000.000</p>
+                <a href="#" class="btn btn-warning text-dark fw-bold">Ver más</a>
+            </div>
         </div>
     </section>
 
@@ -164,7 +210,7 @@
     <div class="container">
     <div class="row">
         <div class="text-center mb-0">
-        <h5 class="fw-bold">Contáctanos</h5>
+        <h5 id="texto-footer" class="fw-bold">Contáctanos</h5>
         <p class="mb-1">Correo: <a href="mailto:info@pnkinmobiliaria.cl" class="text-warning">info@pnkinmobiliaria.cl</a></p>
         <p class="mb-1">Teléfono: <a href="tel:+56912345678" class="text-warning">+56 9 1234 5678</a></p>
         <p class="mb-0">Dirección: La Serena, Región de Coquimbo</p>
