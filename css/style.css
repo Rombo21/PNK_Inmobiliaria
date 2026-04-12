@@ -199,3 +199,25 @@ header img {
 .bg-header-institutional {
     background-color: var(--color-header) !important;
 }
+
+/*responsividad para el Header en celular*/
+@media (max-width: 991px) {
+    header .container.d-flex {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 15px;
+    }
+
+    header .d-flex.align-items-center {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    header .mx-2,
+    header .dropdown,
+    header .text-end {
+        margin: 5px !important;
+        text-align: center !important;
+    }
+}
