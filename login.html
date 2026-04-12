@@ -9,22 +9,20 @@
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <div class="admin-top-link">
-        <a href="dashboardadmin.html">Ingresar como administrador -></a>
-    </div>
+
     <div class="login-card">
         <div class="text-center mb-4">
-            <a href="index.html"><img src="img/LogoPNK.png" alt="Logo PNK" style="height:120px;"></a>
+            <a href="index.html"><img src="img/LogoPNK.png" alt="Logo PNK"></a>
         </div>
             <form>
             <div class="mb-3">
                 <label for="rut" class="form-label">RUT</label>
-                <input type="text" id="rut" name="rut" class="form-control" placeholder="12345678-9" required>
+                <input type="text" id="rut" name="rut" class="form-control" placeholder="12345678-9" pattern="^[0-9]{7,8}-[0-9Kk]{1}$" title="El RUT debe ser sin puntos y con guión. Ej: 12345678-9" required>
             </div>
 
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
-                <input type="password" id="password" name="password" class="form-control" required>
+                <input type="password" id="password" name="password" class="form-control" minlength="8" title="Mínimo 8 caracteres" required>
             </div>
 
             <button type="submit" class="btn btn-login">Acceder</button>

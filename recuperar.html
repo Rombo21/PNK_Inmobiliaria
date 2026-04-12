@@ -11,13 +11,13 @@
 <body class="login-page">
     <div class="login-card">
         <div class="text-center mb-4">
-        <a href="index.html"><img src="img/LogoPNK.png" alt="Logo PNK" style="height:120px;"></a>
+        <a href="index.html"><img src="img/LogoPNK.png" alt="Logo PNK"></a>
         </div>
         <p class="text-center text-muted mb-4">Ingresa tu RUT y te enviaremos un correo con instrucciones para restablecer tu contraseña.</p>
         <form>
             <div class="mb-3">
                 <label for="rut" class="form-label">RUT</label>
-                <input type="text" id="rut" name="rut" class="form-control" placeholder="12345678-9" required>
+                <input type="text" id="rut" name="rut" class="form-control" placeholder="12345678-9" pattern="^[0-9]{7,8}-[0-9Kk]{1}$" title="El RUT debe ser sin puntos y con guión. Ej: 12345678-9" required>
             </div>
 
             <button type="submit" class="btn btn-login">Enviar</button>

@@ -1,11 +1,13 @@
+/* Fondo de pantalla general para el login y el recuperador de clave */
 body {
-    background: linear-gradient(135deg, #0d47a1, #1976d2);
+    background: linear-gradient(135deg, #0d47a1, #1976d2); /* Degradado institucional */
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* Diseño de la cajita blanca donde va el formulario de inicio de sesión */
 .login-card {
     background: #ffffff;
     border-radius: 12px;
@@ -22,6 +24,14 @@ body {
     text-align: center;
 }
 
+/* Forzar tamaño del logo al no existir la etiqueta header */
+.login-card img {
+    height: 120px;
+    object-fit: contain;
+    max-width: 100%;
+}
+
+/* Detalles visuales para los campos y el botón principal */
 .form-label {
     font-weight: bold;
     color: #0d47a1;
@@ -41,6 +51,7 @@ body {
     color: #ffffff;
 }
 
+/* Comportamiento del texto "Olvidaste tu contraseña" */
 .forgot-link {
     display: inline-block;
     margin-top: 10px;
@@ -54,24 +65,3 @@ body {
     color: #ffc107;
     text-decoration: underline;
 }
-
-/* Estilos para el enlace de administrador en la parte superior derecha (SOLO PARA MOSTRAR ENTREGA N°1) */
-.admin-top-link {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-}
-
-.admin-top-link a {
-    font-size: 0.85rem;
-    color: #ffffff;
-    font-weight: bold;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.admin-top-link a:hover {
-    color: #ffc107;
-    text-decoration: underline;
-}
-/* Estilos para el enlace de administrador en la parte superior derecha (SOLO PARA MOSTRAR ENTREGA N°1) */

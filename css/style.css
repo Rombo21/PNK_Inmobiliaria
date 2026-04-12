@@ -1,3 +1,4 @@
+/* Definimos los colores principales de la marca para mantener consistencia */
 :root {
     --color-header: #0d47a1;
     --color-secundario: #1976d2;
@@ -5,6 +6,7 @@
     --color-texto: #ffffff;
 }
 
+/* Diseño general del menú superior y los títulos */
 header {
     background-color: var(--color-header);
 }
@@ -21,7 +23,10 @@ header a:hover {
     text-decoration: underline;
 }
 
-h2, h3, h4, h5 {
+h2,
+h3,
+h4,
+h5 {
     color: var(--color-header);
     font-weight: bold;
 }
@@ -30,6 +35,7 @@ h2, h3, h4, h5 {
     color: var(--color-texto);
 }
 
+/* Colores y efectos hover para los botones de toda la web */
 .btn-custom {
     background-color: var(--color-acento);
     color: var(--color-header);
@@ -46,8 +52,6 @@ h2, h3, h4, h5 {
     color: var(--color-header);
     font-weight: bold;
 }
-
-
 
 #sobre-nosotros {
     color: #000000;
@@ -66,11 +70,12 @@ h2, h3, h4, h5 {
 }
 
 
+/* Estructura para mostrar las parcelas y propiedades destacadas */
 .card {
     height: 100%;
     display: flex;
-    flex-direction: column; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-img-top {
@@ -137,6 +142,7 @@ header img {
     margin-right: 8px;
 }
 
+/* Diseño de las opciones que se pliegan en el menú superior */
 .dropdown-menu {
     background-color: var(--color-header);
 }
@@ -156,4 +162,40 @@ header img {
     object-fit: cover;
     width: 100%;
     border-radius: 8px;
+}
+
+/* Efectos visuales de sombreado y elevación para los paneles de los usuarios */
+.premium-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.premium-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.form-section-title {
+    border-bottom: 2px solid var(--color-acento);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    color: var(--color-header);
+    font-weight: bold;
+}
+
+.check-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.table-responsive {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bg-header-institutional {
+    background-color: var(--color-header) !important;
 }

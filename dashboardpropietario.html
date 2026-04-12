@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNK Inmobiliaria - Panel Propietario</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/iconoPNK.png">
+    <link href="css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-light">
+
+    <header class="text-white py-3 shadow-sm">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html">
+                <img src="img/LogoPNK2.png" alt="Logo PNK" class="me-2">
+            </a>
+            <div class="text-end">
+                <span class="text-light me-3 fw-bold"><i class="fa-solid fa-user-circle me-2"></i>¡Hola, Juan
+                    Perez!</span>
+                <a href="index.html" class="btn btn-outline-warning fw-bold btn-sm"><i
+                        class="fa-solid fa-sign-out-alt me-1"></i> Cerrar Sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="fw-bold"><i class="fa-solid fa-house-user text-warning me-2"></i> Mi Panel de Propietario
+                </h2>
+                <p class="text-muted">Administra tus inmuebles, sube nuevas propiedades y revisa las estadísticas de
+                    visualización.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card premium-card text-center h-100 border-0 bg-white">
+                <div class="card-body py-4">
+                    <div class="display-4 text-warning mb-2"><i class="fa-solid fa-building"></i></div>
+                    <h5 class="card-title text-muted">Propiedades Publicadas</h5>
+                    <h2 class="fw-bold text-dark mb-0">2</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card premium-card text-center h-100 border-0 bg-white">
+                <div class="card-body py-4">
+                    <div class="display-4 text-success mb-2"><i class="fa-solid fa-eye"></i></div>
+                    <h5 class="card-title text-muted">Visitas Totales</h5>
+                    <h2 class="fw-bold text-dark mb-0">348</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card premium-card text-center h-100 border-0 bg-white">
+                <div class="card-body py-4">
+                    <div class="display-4 text-primary mb-2"><i class="fa-solid fa-envelope"></i></div>
+                    <h5 class="card-title text-muted">Solicitudes de Visita</h5>
+                    <h2 class="fw-bold text-dark mb-0">5</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulario CRUD Registrar Propiedad -->
+    <div class="card premium-card mb-5 border-0">
+        <div class="card-header bg-white py-3">
+            <h4 class="mb-0 fw-bold"><i class="fa-solid fa-plus-circle text-warning me-2"></i> Registrar Nueva Propiedad
+            </h4>
+        </div>
+        <div class="card-body p-4 p-md-5">
+            <form class="row g-4">
+
+                <!-- Información Básica -->
+                <div class="col-12">
+                    <h5 class="form-section-title"><i class="fa-solid fa-info-circle me-2"></i> Información Básica</h5>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="tipoPropiedad" class="form-label fw-bold">Tipo de Propiedad</label>
+                    <select id="tipoPropiedad" class="form-select bg-light" required>
+                        <option value="">Seleccione...</option>
+                        <option value="casa">Casa</option>
+                        <option value="departamento">Departamento</option>
+                        <option value="terreno">Terreno</option>
+                    </select>
+                </div>
+
+                <div class="col-md-8">
+                    <label for="titulo" class="form-label fw-bold">Título de la publicación</label>
+                    <input type="text" id="titulo" class="form-control bg-light"
+                        placeholder="Ej: Hermosa casa en El Milagro con piscina..." required>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="provincia" class="form-label fw-bold">Provincia</label>
+                    <select id="provincia" class="form-select bg-light" required>
+                        <option value="">Seleccione...</option>
+                        <option value="elqui">Elqui</option>
+                        <option value="limari">Limarí</option>
+                        <option value="choapa">Choapa</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="comuna" class="form-label fw-bold">Comuna</label>
+                    <select id="comuna" class="form-select bg-light" required>
+                        <option value="">Seleccione...</option>
+                        <option value="laserena">La Serena</option>
+                        <option value="coquimbo">Coquimbo</option>
+                        <option value="ovalle">Ovalle</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="sector" class="form-label fw-bold">Sector</label>
+                    <input type="text" id="sector" class="form-control bg-light"
+                        placeholder="Ej: El Milagro, Centro, etc." required>
+                </div>
+
+                <!-- Detalles y Dimensiones -->
+                <div class="col-12 mt-5">
+                    <h5 class="form-section-title"><i class="fa-solid fa-ruler-combined me-2"></i> Detalles y
+                        Dimensiones</h5>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="banos" class="form-label fw-bold">Cant. Baños</label>
+                    <input type="number" id="banos" class="form-control bg-light" min="0" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="dormitorios" class="form-label fw-bold">Cant. Dormitorios</label>
+                    <input type="number" id="dormitorios" class="form-control bg-light" min="0" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="areaTotal" class="form-label fw-bold">Área Total Terreno (m²)</label>
+                    <input type="number" id="areaTotal" class="form-control bg-light" min="0" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="areaConstruida" class="form-label fw-bold">Área Construida (m²)</label>
+                    <input type="number" id="areaConstruida" class="form-control bg-light" min="0" required>
+                </div>
+
+                <!-- Precios -->
+                <div class="col-12 mt-5">
+                    <h5 class="form-section-title"><i class="fa-solid fa-money-bill-wave me-2"></i> Precios y Fechas
+                    </h5>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="precioClp" class="form-label fw-bold">Precio ($ CLP)</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="text" id="precioClp" class="form-control bg-light" placeholder="154000000"
+                            required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="precioUf" class="form-label fw-bold">Precio (UF)</label>
+                    <div class="input-group">
+                        <span class="input-group-text">UF</span>
+                        <input type="text" id="precioUf" class="form-control bg-light" placeholder="4500" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="fechaPub" class="form-label fw-bold">Fecha de Publicación</label>
+                    <input type="date" id="fechaPub" class="form-control bg-light" required>
+                </div>
+
+                <!-- Distribución y Extras -->
+                <div class="col-12 mt-5">
+                    <h5 class="form-section-title"><i class="fa-solid fa-list-check me-2"></i> Características
+                        Especiales</h5>
+                    <p class="text-muted small mb-3">Marque las opciones con las que cuenta la propiedad.</p>
+
+                    <div class="check-grid">
+                        <div class="form-check form-switch p-0 d-flex align-items-center">
+                            <input class="form-check-input ms-0 me-2" type="checkbox" id="checkBodega">
+                            <label class="form-check-label" for="checkBodega">Bodega</label>
+                        </div>
+                        <div class="form-check form-switch p-0 d-flex align-items-center">
+                            <input class="form-check-input ms-0 me-2" type="checkbox" id="checkEstacionamiento">
+                            <label class="form-check-label" for="checkEstacionamiento">Estacionamiento</label>
+                        </div>
+                        <div class="form-check form-switch p-0 d-flex align-items-center">
+                            <input class="form-check-input ms-0 me-2" type="checkbox" id="checkLogia">
+                            <label class="form-check-label" for="checkLogia">Logia</label>
+                        </div>
+                        <div class="form-check form-switch p-0 d-flex align-items-center">
+                            <input class="form-check-input ms-0 me-2" type="checkbox" id="checkCocina">
+                            <label class="form-check-label" for="checkCocina">Cocina Amoblada</label>
+                        </div>
+                        <div class="form-check form-switch p-0 d-flex align-items-center">
+                            <input class="form-check-input ms-0 me-2" type="checkbox" id="checkAntejardin">
+                            <label class="form-check-label" for="checkAntejardin">Antejardín</label>
+                        </div>
+                        <div class="form-check form-switch p-0 d-flex align-items-center">
+                            <input class="form-check-input ms-0 me-2" type="checkbox" id="checkPatio">
+                            <label class="form-check-label" for="checkPatio">Patio Trasero</label>
+                        </div>
+                        <div class="form-check form-switch p-0 d-flex align-items-center">
+                            <input class="form-check-input ms-0 me-2" type="checkbox" id="checkPiscina">
+                            <label class="form-check-label" for="checkPiscina">Piscina</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Archivos y Descripción -->
+                <div class="col-12 mt-5">
+                    <h5 class="form-section-title"><i class="fa-solid fa-images me-2"></i> Multimedia, Descripción y
+                        Mapa</h5>
+                </div>
+
+                <div class="col-md-12">
+                    <label for="descripcion" class="form-label fw-bold">Descripción Completa</label>
+                    <textarea id="descripcion" class="form-control bg-light" rows="4"
+                        placeholder="Describa el inmueble con todo detalle..." required></textarea>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="fotos" class="form-label fw-bold">Fotografías (1 a 10 máx.)</label>
+                    <input class="form-control bg-light" type="file" id="fotos" multiple accept="image/*" required>
+                    <small class="text-muted">Añada fotos nítidas para mejorar sus posibilidades de venta.</small>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="mapaIframe" class="form-label fw-bold">Enlace o API de Google Maps</label>
+                    <input type="text" id="mapaIframe" class="form-control bg-light"
+                        placeholder="Pegue el enlace iframe de ubicación aquí" required>
+                    <small class="text-muted">Nos ayudará a trazar la ubicación exacta en la app.</small>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="col-12 mt-4 text-end border-top pt-4">
+                    <button type="reset" class="btn btn-outline-secondary btn-lg me-2 fw-bold"><i
+                            class="fa-solid fa-eraser me-1"></i> Limpiar</button>
+                    <button type="submit" class="btn btn-warning btn-lg text-dark fw-bold"><i
+                            class="fa-solid fa-save me-1"></i> Publicar Propiedad</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tabla CRUD (Lista de Inmuebles) -->
+    <h3 class="mb-4 fw-bold"><i class="fa-solid fa-table-list text-warning me-2"></i> Mis Inmuebles Publicados</h3>
+    <div class="card premium-card border-0 mb-5">
+        <div class="card-body p-0 border-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-header-institutional text-white">
+                        <tr>
+                            <th class="py-3 px-4">Código / Imagen</th>
+                            <th class="py-3">Tipo / Ubicación</th>
+                            <th class="py-3">Precio</th>
+                            <th class="py-3">Visitas</th>
+                            <th class="py-3 text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-4">
+                                <div class="d-flex align-items-center">
+                                    <img src="img/casa_destacada_1/Casadestacada1.webp" alt="Casa"
+                                        class="rounded object-fit-cover me-3" width="70" height="50">
+                                    <div>
+                                        <span class="d-block fw-bold">C0125457</span>
+                                        <span class="badge bg-success">Activa</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="d-block fw-bold">Casa</span>
+                                <span class="text-muted small">El Milagro, La Serena</span>
+                            </td>
+                            <td>
+                                <span class="d-block fw-bold">$154.000.000</span>
+                                <span class="text-muted small">4.200 UF</span>
+                            </td>
+                            <td>154 <i class="fa-solid fa-eye ms-1 text-muted"></i></td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-outline-primary shadow-sm" title="Editar"><i
+                                        class="fa-solid fa-pen"></i></button>
+                                <button class="btn btn-sm btn-outline-danger shadow-sm ms-1" title="Eliminar"><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4">
+                                <div class="d-flex align-items-center">
+                                    <img src="img/departamento_destacado_1/Fachadasantamargarita-681a1d40816728.webp"
+                                        alt="Departamento" class="rounded object-fit-cover me-3" width="70" height="50">
+                                    <div>
+                                        <span class="d-block fw-bold">D0542318</span>
+                                        <span class="badge bg-success">Activa</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="d-block fw-bold">Departamento</span>
+                                <span class="text-muted small">La Herradura, Coquimbo</span>
+                            </td>
+                            <td>
+                                <span class="d-block fw-bold">$89.000.000</span>
+                                <span class="text-muted small">2.430 UF</span>
+                            </td>
+                            <td>194 <i class="fa-solid fa-eye ms-1 text-muted"></i></td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-outline-primary shadow-sm" title="Editar"><i
+                                        class="fa-solid fa-pen"></i></button>
+                                <button class="btn btn-sm btn-outline-danger shadow-sm ms-1" title="Eliminar"><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <footer class="bg-header-institutional text-white py-5 mt-auto border-top border-warning border-3">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-md-6 text-center text-md-start">
+                    <img src="img/LogoPNK2.png" alt="PNK Inmobiliaria" style="height: 50px;" class="mb-2">
+                    <p class="small text-white-50 mb-0">Panel de Gestión para Propietarios.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-1 small text-white"><i class="fa-solid fa-envelope me-2"></i>info@pnkinmobiliaria.cl</p>
+                    <p class="mb-0 small text-white"><i class="fa-solid fa-phone me-2"></i>+56 9 1234 5678</p>
+                </div>
+            </div>
+            <hr class="border-light opacity-50 my-4">
+            <div class="text-center small text-white-50">
+                <p class="mb-0">© 2026 PNK Inmobiliaria. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,307 @@
+  
+  
+   
+  
+  
+  
+  
+Desarrollo Programación 
+  
+  
+  
+FRONT 
+  
+- 
+  
+END 
+  
+  
+  
+  
+  
+PROYECTO 
+  
+  
+  
+PNK 
+  
+  
+  
+INMOBILIARIA 
+  
+  
+  
+Evaluación Sumativa I:   
+Taller: "Identifica elementos HTML en base a un template o mockup" (15%)   
+   
+ÁREA   
+ACADÉMICA   
+Informática y   
+Telecomunicaciones   CARRERA   Analista Programador   
+ASIGNATURA   Programación Front End   CÓDIGO   TI2031   
+SEDE   La Serena   DOCENTE   Jorge Cortés G.   
+Unidad de Aprendizaje   N° I   Criterios a Evaluar   (1.1.1)   
+DURACIÓN      FECHA      
+   
+   NOMBRE ESTUDIANTE:       
+   Apellido Paterno   
+      -    
+RUT:   
+ 
+                     
+ 
+ 
+   
+ 
+A pellido 
+Materno   
+Nombres   
+PUNTAJE MÁXIMO           
+NOTA:   
+    
+   
+Firma 
+conforme   
+PUNTAJE OBTENIDO        
+     Sí      
+No   
+Motivo:   
+  
+  
+  
+  
+  Solicita re-corrección   
+   
+INSTRUCCIONES GENERALES:   
+1. La nota 4.0 se obtiene logrando un 60% del puntaje total.   
+2. Preocúpese de la redacción, ortografía y legibilidad de sus respuestas.   
+3. Está prohibido el préstamo (o solicitud) de materiales durante la evaluación.    
+4. Se prohíbe el uso de celulares, mp3, mp4, iphone, ipod o similares durante la evaluación. (Según corresponda 
+indicar: Se prohíbe el uso de calculadoras).   
+Aprendizaje esperado   
+1.1.- Elaboración de sitios web utilizando HTML5 y CSS3.   
+Criterios de evaluación   
+1.1.1.- Identifica elementos HTML en base a un template o mockup.   
+   
+     
+  
+REQUERIMIENTOS PLATAFORMA AMBIENTE WEB   
+“PROYECTO PNK INMOBILIARIA”   
+   
+   
+PROBLEMÁTICA   
+Se requiere desarrollar una Plataforma Web, para el sector Inmobiliario, esta 
+plataforma debe permitir que cualquier usuario pueda publicar todos los 
+antecedentes necesarios de la vivienda previo registro y creación de una cuenta de 
+usuario.   
+Además, esta plataforma quiere cambiar la manera de como hoy en día funcionan 
+las plataformas similares de ventas de viviendas nuevas o usadas y quiere dar la 
+posibilidad de que cualquier usuario pueda ser un gestor inmobiliario freelance y 
+pueda ayudar a gestionar la promoción y venta de una vivienda con la finalidad de 
+comisionar si el negocio se llega a concretar.   
+   
+ANTECEDENTES A CONSIDERAR EN EL DESARROLLO   
+   
+1. TIPOS DE USUARIOS   
+• Administrador   
+• Dueño de Inmueble o Propietario   
+• Gestor Inmobiliario Free   
+Usuario Administrador: Este usuario no se puede eliminar, puede realizar 
+todas las funcionalidades tales como:   
+• Ingresar Dueño de Inmueble   
+• Ingresar o Habilitar a Gestor Inmobiliario Free   
+• Dar de Baja algún dueño de Inmueble o Gestor Inmobiliario Free • 
+Administración de Publicación de Avisos de Inmuebles.   
+Usuario Dueño de Inmueble o Propietario: Esta cuenta de usuario debe 
+ser creada desde la misma plataforma en alguna opción que diga   
+“Registrarme como PROPIETARIO”, ingresando algunos datos básicos tales 
+como:   
+ Rut   
+ Nombre Completo   
+ Fecha de Nacimiento   
+ Correo Electrónico   
+ Contraseña   
+ Sexo   
+ Teléfono Móvil   
+ N° de la propiedad según registro de Bienes Raíces.   
+Al momento de Registrarse el Usuario debe quedar en estado pendiente 
+hasta que el Administrador de la Plataforma active la cuenta previa 
+verificación de antecedentes, cuando esto ocurra el Propietario recibirá un 
+correo electrónico con toda la información necesaria de la activación de la 
+cuenta.   
+Una vez activa la cuenta el usuario propietario podrá subir todos los 
+antecedentes respecto al inmueble, según las características de dicha 
+propiedad.   
+El usuario propietario podrá modificar, eliminar e ingresar todos los 
+antecedentes las veces que quiera de cada propiedad desde su cuenta.   
+    
+Usuario Gestor Inmobiliario Free: Esta cuenta de usuario debe ser creada 
+desde la misma plataforma en alguna opción que diga “Registrarme como  
+GESTOR INMOBILIARIO FREE”, ingresando algunos datos básicos para 
+poder postular como tal, para esto debe ingresar los siguientes antecedentes:   
+ Rut   
+ Nombre Completo   
+ Fecha de Nacimiento   
+ Correo Electrónico   
+ Contraseña   
+ Sexo   
+ Teléfono Móvil   
+ Certificado de Antecedentes.   
+   
+Para ser un Gestor Inmobiliario Free y comience a generar sus INGRE$O$ 
+ADICIONALE$ debe realizar las siguientes acciones:   
+   
+1.- Registrarse como Gestor Inmobiliario   
+2.- Captar una Propiedad para la COMUNIDAD   
+3.- En caso de ser ACEPTADO recibirá un PENKA_ID que le permitirá 
+ofertar todas las propiedades disponibles en la plataforma y si una 
+propiedad logra venderse y fue gestionada por él se le podrá 
+comisionar.   
+   
+Una vez activa la cuenta el Gestor Inmobiliario podrá subir los antecedentes 
+de un Propietario que necesite vender un Inmueble.   
+El usuario Gestor Inmobiliario podrá ofrecer cualquier inmueble que se 
+encuentre en la plataforma.   
+  
+ 
+2. TIPOS DE PROPIEDADES A OFRECER   
+• Casas   
+• Departamentos   
+• Terrenos   
+   
+3. AMBITO Y ALCANCE DEL PROYECTO   
+El proyecto se desarrollar para la Región de Coquimbo por lo que debe 
+considerar para el ingreso, como para la búsqueda lo siguiente:   
+• Provincias   
+• Comuna   
+• Sector   
+Ejemplos:   Provincia Elqui, Comuna La Serena, Sector El Milagro. Provincia 
+Limarí, Comuna Ovalle, Sector Centro.   
+   
+4. PUBLICACIÓN DE INMUEBLE   
+La plataforma debe permitir al Propietario y al Administrador poder publicar 
+los siguientes antecedentes de la Propiedad   
+• Tipo de Propiedad  
+• Fotografias [1 a 10].   
+• Descripción.   
+• Cantidad de Baños.   
+• Cantidad de Dormitorios.   
+• Área Total del Terreno.   
+• Área Construida.   
+• Precio en $.   
+• Precio en UF.   
+• Fecha de Publicación • Opción de Solicitar una Visita.   
+   
+Registrar si la propiedad cuenta con:   
+   
+• Bodega   
+• Estacionamiento   
+• Logia   
+• Cocina amoblada   
+• Antejardin   
+• Patio trasero   
+• Piscina   
+   
+ Publicar la ubicación Utilizando la Api de Mapa (ejemplo GoogleMaps)   
+  
+  
+  
+  
+  
+  
+  
+5. MUESTRA Y BUSQUEDA DE UNA INMUEBLE   
+Debe existir un buscador por Comuna, Provincia y Sector del Inmueble de 
+Buscar, la visualización debe mostrar los siguientes datos:   
+   
+   
+  
+Cód:C0125457   
+Casa Sector El Milagro, La Serena   
+Precio $154.000.000   
+  
+   
+¡Al presionar la opción Quiero saber más!, debe mostrar la siguiente 
+información:   
+• Fotografías [1 a 10].   
+• Descripción.   
+• Cantidad de Baños.   
+• Cantidad de Dormitorios.   
+• Área Total del Terreno.   
+• Área Construida.   
+• Precio en $.   
+• Precio en UF.   
+• Fecha de Publicación • Opción de Solicitar una Visita.   
+   
+Saber si Cuenta con:   
+   
+• Bodega   
+• Estacionamiento   
+• Logia   
+• Cocina amoblada   
+• Antejardin   
+
+• Patio trasero   
+• Piscina   
+  
+ Además de la Ubicación Utilizando la Api de Mapa (ejemplo GoogleMaps)   
+ Opción de Compartir con Redes Sociales   
+   
+6. REFERENCIAS   
+Tomar como Referencia los Siguientes Sitios:   
+   
+• https://www.portalinmobiliario.com  
+• https://www.remax.cl/  
+• https://chilepropiedades.cl  
+• http://www.serenapropiedades.cl/  
+• https://www.alevarrepropiedades.cl/  
+  
+   
+   
+   
+   
+   
+FECHA DE ENTREGA ENTRE EL 7 AL 14 DE ABRIL   
+ ENTREGA EN DUPLAS O INDIVIDUAL      
+ENTREGA N° 1 – HTML - CSS (15%)   
+   
+Para la primera entrega se solicita crear un ambiente grafico según el rubro de la 
+problemática (Rubro Inmobiliario) y debe habilitar lo siguiente:   
+   
+1. FRONT-END (80 Pts)   
+   
+• Página Principal (20 Pts)   
+• Registrar a un Gestor Inmobiliario (10 Pts)   
+• Registrar a un Propietario (10 Pts)   
+• Login – Recuperar (5 Pts)  
+• Dashboard (5 Pts)   
+• Registro de Usuarios (15 Pts)   
+• Registro de Propiedades (15 Pts)   
+  
+   
+• EJEMPLO DE MOCKUPS    
+   
+  
+
+Debe respetar la estructura y secciones, puede cambiar imágenes, colores fuente.   
+   
+IMPORTANTE   
+   
+• Permitir navegación entre todos los módulos.    
+   
+  
+   
+Debe habilitar el dashboard con las siguientes opciones, aplique formatos y estilos según 
+corresponda.   
+   
+Debe Crear usted los formularios según los requerimientos para:   
+   
+• Formulario de Registro Propietario    
+• Formulario de Registro Gestor    
+   
+• CRUD Propiedades   
+• CRUD Usuarios    
+   
+Debe asignar campos y distribución según corresponda en los requerimientos.   
+    
+

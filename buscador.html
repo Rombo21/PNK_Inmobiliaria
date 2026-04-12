@@ -1,193 +1,256 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PNK Inmobiliaria - Buscador</title>
     <link rel="icon" href="img/iconoPNK.png">
-    <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <header class="text-white py-3">
-        <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-3 d-flex align-items-center">
-            <img src="img/LogoPNK2.png" alt="Logo PNK" class="me-2">
+    <header class="text-white py-3 shadow-sm bg-header-institutional">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <a href="index.html">
+                    <img src="img/LogoPNK2.png" alt="Logo PNK" class="me-2">
+                </a>
             </div>
-            <div class="col-md-9 text-end">
-            <a href="index.html" class="fw-bold mx-2">Inicio</a>
-            <a href="#contacto" class="fw-bold mx-2">Contactanos</a>
-            <a href="login.html" class="fw-bold mx-2">Iniciar Sesión</a>
+            <div class="d-flex align-items-center">
+                <a href="index.html" class="fw-bold mx-2 text-white text-decoration-none">Inicio</a>
+                <a href="buscador.html"
+                    class="fw-bold mx-2 text-warning text-decoration-none border-bottom border-warning">Buscador</a>
+                <a href="login.html" class="fw-bold mx-2 text-white text-decoration-none">Iniciar Sesión</a>
+                <div class="dropdown mx-2">
+                    <a class="fw-bold dropdown-toggle text-white text-decoration-none" href="#"
+                        data-bs-toggle="dropdown">Regístrate</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="registropropietario.html">Propietario</a></li>
+                        <li><a class="dropdown-item" href="registrogestor.html">Gestor Freelance</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown ms-3">
+                    <a class="btn btn-outline-warning fw-bold btn-sm dropdown-toggle" href="#"
+                        data-bs-toggle="dropdown">Vistas de Prueba</a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow">
+                        <li><a class="dropdown-item fw-bold text-primary" href="dashboardadmin.html"><i
+                                    class="fa-solid fa-user-shield me-2"></i>Dashboard Admin</a></li>
+                        <li><a class="dropdown-item fw-bold text-success" href="dashboardpropietario.html"><i
+                                    class="fa-solid fa-house-user me-2"></i>Dashboard Propietario</a></li>
+                        <li><a class="dropdown-item fw-bold text-info" href="dashboardgestor.html"><i
+                                    class="fa-solid fa-user-tie me-2"></i>Dashboard Gestor</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
         </div>
     </header>
 
     <div class="container-fluid my-5">
         <div class="row">
-        <aside class="col-md-3">
-            <h4 class="mb-3">Filtros</h4>
-            <form>
-            <div class="mb-3">
-                <label for="comuna" class="form-label fw-bold">Comuna</label>
-                <select id="comuna" class="form-select">
-                <option>La Serena</option>
-                <option>Coquimbo</option>
-                <option>Vicuña</option>
-                <option>Ovalle</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="provincia" class="form-label fw-bold">Provincia</label>
-                <select id="provincia" class="form-select">
-                <option>Elqui</option>
-                <option>Limarí</option>
-                <option>Choapa</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="sector" class="form-label fw-bold">Sector</label>
-                <select id="sector" class="form-select">
-                <option>Centro Coquimbo</option>
-                <option>Centro La Serena</option>
-                <option>Tierras Blancas</option>
-                <option>La Herradura</option>
-                <option>El Milagro</option>
-                <option>Las Compañías</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="precio" class="form-label fw-bold">Rango de precio</label>
-                <input type="text" id="precio" class="form-control" placeholder="Ej: 50.000.000 - 150.000.000">
-            </div>
-            <div class="mb-3">
-                <label for="tipo" class="form-label fw-bold">Tipo de propiedad</label>
-                <select id="tipo" class="form-select">
-                <option>Casa</option>
-                <option>Departamento</option>
-                <option>Parcela</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-custom fw-bold w-100">Aplicar filtros</button>
-            </form>
-        </aside>
+            <aside class="col-md-3">
+                <h4 class="mb-3">Filtros</h4>
+                <form>
+                    <div class="mb-3">
+                        <label for="comuna" class="form-label fw-bold">Comuna</label>
+                        <select id="comuna" class="form-select">
+                            <option>La Serena</option>
+                            <option>Coquimbo</option>
+                            <option>Vicuña</option>
+                            <option>Ovalle</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="provincia" class="form-label fw-bold">Provincia</label>
+                        <select id="provincia" class="form-select">
+                            <option>Elqui</option>
+                            <option>Limarí</option>
+                            <option>Choapa</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sector" class="form-label fw-bold">Sector</label>
+                        <select id="sector" class="form-select">
+                            <option>Centro Coquimbo</option>
+                            <option>Centro La Serena</option>
+                            <option>Tierras Blancas</option>
+                            <option>La Herradura</option>
+                            <option>El Milagro</option>
+                            <option>Las Compañías</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label fw-bold">Rango de precio</label>
+                        <input type="text" id="precio" class="form-control" placeholder="Ej: 50.000.000 - 150.000.000">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipo" class="form-label fw-bold">Tipo de propiedad</label>
+                        <select id="tipo" class="form-select">
+                            <option>Casa</option>
+                            <option>Departamento</option>
+                            <option>Parcela</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-custom fw-bold w-100">Aplicar filtros</button>
+                </form>
+            </aside>
 
-        <main class="col-md-9">
-            <h4 class="mb-3">Propiedades disponibles</h4>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100">
-                    <img src="img/casa_destacada_1/Casadestacada1.webp" class="card-img-top" alt="Casa en El Milagro">
-                    <div class="card-body">
-                        <h5 class="card-title">Casa en El Milagro</h5>
-                        <p class="fw-bold">Precio: $154.000.000</p>
-                        <a href="#" class="btn btn-custom fw-bold">Ver más</a>
+            <main class="col-md-9">
+                <h4 class="mb-3">Propiedades disponibles</h4>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100 premium-card">
+                            <img src="img/casa_destacada_1/Casadestacada1.webp" class="card-img-top"
+                                alt="Casa en El Milagro">
+                            <div class="card-body">
+                                <h5 class="card-title">Casa en El Milagro</h5>
+                                <p class="fw-bold">Precio: $154.000.000</p>
+                                <a href="#" class="btn btn-custom fw-bold"><i class="fa-solid fa-eye me-1"></i> Ver
+                                    más</a>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 premium-card">
+                            <img src="img/departamento_destacado_1/Fachadasantamargarita-681a1d40816728.webp"
+                                class="card-img-top" alt="Departamento en La Herradura">
+                            <div class="card-body">
+                                <h5 class="card-title">Departamento en La Herradura</h5>
+                                <p class="fw-bold">Precio: $89.000.000</p>
+                                <a href="#" class="btn btn-custom fw-bold"><i class="fa-solid fa-eye me-1"></i> Ver
+                                    más</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                    <img src="img/departamento_destacado_1/Fachadasantamargarita-681a1d40816728.webp" class="card-img-top" alt="Departamento en La Herradura">
-                    <div class="card-body">
-                        <h5 class="card-title">Departamento en La Herradura</h5>
-                        <p class="fw-bold">Precio: $89.000.000</p>
-                        <a href="#" class="btn btn-custom fw-bold">Ver más</a>
+                    <div class="col-md-4">
+                        <div class="card h-100 premium-card">
+                            <img src="img/parcela_destacada_1_ls/fachada.webp" class="card-img-top"
+                                alt="Parcela en Ovalle">
+                            <div class="card-body">
+                                <h5 class="card-title">Parcela en Ovalle</h5>
+                                <p class="fw-bold">Precio: $120.000.000</p>
+                                <a href="#" class="btn btn-custom fw-bold"><i class="fa-solid fa-eye me-1"></i> Ver
+                                    más</a>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                    <img src="img/parcela_destacada_1_ls/fachada.webp" class="card-img-top" alt="Parcela en Ovalle">
-                    <div class="card-body">
-                        <h5 class="card-title">Parcela en Ovalle</h5>
-                        <p class="fw-bold">Precio: $120.000.000</p>
-                        <a href="#" class="btn btn-custom fw-bold">Ver más</a>
-                    </div>
-                    </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card h-100">
-                    <img src="img/casa_destacada_limari/fachada.webp" class="card-img-top" alt="Casa en Limari">
-                    <div class="card-body">
-                        <h5 class="card-title">Casa en Limari</h5>
-                        <p class="fw-bold">Precio: $105.000.000</p>
-                        <a href="#" class="btn btn-custom fw-bold">Ver más</a>
+                    <div class="col-md-4">
+                        <div class="card h-100 premium-card">
+                            <img src="img/casa_destacada_limari/fachada.webp" class="card-img-top" alt="Casa en Limari">
+                            <div class="card-body">
+                                <h5 class="card-title">Casa en Limari</h5>
+                                <p class="fw-bold">Precio: $105.000.000</p>
+                                <a href="#" class="btn btn-custom fw-bold"><i class="fa-solid fa-eye me-1"></i> Ver
+                                    más</a>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="card h-100">
-                    <img src="img/casas departamento y terrenos pnk/centro serena/fachada.webp" class="card-img-top" alt="Casa en Centro de La Serena">
-                    <div class="card-body">
-                        <h5 class="card-title">Casa en Centro de La Serena</h5>
-                        <p class="fw-bold">Precio: $95.000.000</p>
-                        <a href="#" class="btn btn-custom fw-bold">Ver más</a>
-                    </div>
-                    </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card h-100">
-                    <img src="img/casas departamento y terrenos pnk/compañias/fachada.webp" class="card-img-top" alt="Casa compañias">
-                    <div class="card-body">
-                        <h5 class="card-title">Casa en Compañías</h5>
-                        <p class="fw-bold">Precio: $128.000.000</p>
-                        <a href="#" class="btn btn-custom fw-bold">Ver más</a>
+                    <div class="col-md-4">
+                        <div class="card h-100 premium-card">
+                            <img src="img/casas departamento y terrenos pnk/centro serena/fachada.webp"
+                                class="card-img-top" alt="Casa en Centro de La Serena">
+                            <div class="card-body">
+                                <h5 class="card-title">Casa en Centro de La Serena</h5>
+                                <p class="fw-bold">Precio: $95.000.000</p>
+                                <a href="#" class="btn btn-custom fw-bold"><i class="fa-solid fa-eye me-1"></i> Ver
+                                    más</a>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card h-100">
-                    <img src="img/casas departamento y terrenos pnk/ovalle/fachada.webp" class="card-img-top" alt="Departamento en Ovalle">
-                    <div class="card-body">
-                        <h5 class="card-title">Departamento en Ovalle</h5>
-                        <p class="fw-bold">Precio: $110.000.000</p>
-                        <a href="#" class="btn btn-custom fw-bold">Ver más</a>
+                    <div class="col-md-4">
+                        <div class="card h-100 premium-card">
+                            <img src="img/casas departamento y terrenos pnk/compañias/fachada.webp" class="card-img-top"
+                                alt="Casa compañias">
+                            <div class="card-body">
+                                <h5 class="card-title">Casa en Compañías</h5>
+                                <p class="fw-bold">Precio: $128.000.000</p>
+                                <a href="#" class="btn btn-custom fw-bold"><i class="fa-solid fa-eye me-1"></i> Ver
+                                    más</a>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card h-100">
-                    <img src="img/casas departamento y terrenos pnk/terrenos/fachada.webp" class="card-img-top" alt="Parcela en vicuña">
-                    <div class="card-body">
-                        <h5 class="card-title">Parcela en Ovalle</h5>
-                        <p class="fw-bold">Precio: $160.000.000</p>
-                        <a href="#" class="btn btn-custom fw-bold">Ver más</a>
+                    <div class="col-md-4">
+                        <div class="card h-100 premium-card">
+                            <img src="img/casas departamento y terrenos pnk/ovalle/fachada.webp" class="card-img-top"
+                                alt="Departamento en Ovalle">
+                            <div class="card-body">
+                                <h5 class="card-title">Departamento en Ovalle</h5>
+                                <p class="fw-bold">Precio: $110.000.000</p>
+                                <a href="#" class="btn btn-custom fw-bold"><i class="fa-solid fa-eye me-1"></i> Ver
+                                    más</a>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card h-100">
-                    <img src="img/casas departamento y terrenos pnk/tierras blancas/fachada.webp" class="card-img-top" alt="Departamento Tierras Blancas">
-                    <div class="card-body">
-                        <h5 class="card-title">Departamento en Tierras Blancas</h5>
-                        <p class="fw-bold">Precio: $180.000.000</p>
-                        <a href="#" class="btn btn-custom fw-bold">Ver más</a>
+                    <div class="col-md-4">
+                        <div class="card h-100 premium-card">
+                            <img src="img/casas departamento y terrenos pnk/terrenos/fachada.webp" class="card-img-top"
+                                alt="Parcela en vicuña">
+                            <div class="card-body">
+                                <h5 class="card-title">Parcela en Ovalle</h5>
+                                <p class="fw-bold">Precio: $160.000.000</p>
+                                <a href="#" class="btn btn-custom fw-bold"><i class="fa-solid fa-eye me-1"></i> Ver
+                                    más</a>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="col-md-4">
+                        <div class="card h-100 premium-card">
+                            <img src="img/casas departamento y terrenos pnk/tierras blancas/fachada.webp"
+                                class="card-img-top" alt="Departamento Tierras Blancas">
+                            <div class="card-body">
+                                <h5 class="card-title">Departamento en Tierras Blancas</h5>
+                                <p class="fw-bold">Precio: $180.000.000</p>
+                                <a href="#" class="btn btn-custom fw-bold"><i class="fa-solid fa-eye me-1"></i> Ver
+                                    más</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
         </div>
     </div>
 
-<footer id="contacto" class="text-white py-4 mt-5">
-    <div class="container text-center">
-        <h5 id="texto-footer" class="fw-bold">Contáctanos</h5>
-        <p class="mb-1">Correo: <a href="mailto:info@pnkinmobiliaria.cl" >info@pnkinmobiliaria.cl</a></p>
-        <p class="mb-1">Teléfono: <a href="tel:+56912345678" >+56 9 1234 5678</a></p>
-        <p class="mb-0">Dirección: La Serena, Región de Coquimbo</p>
-        <hr class="border-light my-3">
-        <p class="mb-0">© 2026 PNK Inmobiliaria - Región de Coquimbo</p>
-    </div>
-</footer>
+    <footer id="contacto" class="bg-header-institutional text-white py-5 mt-auto border-top border-warning border-3">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-md-4 text-center text-md-start">
+                    <img src="img/LogoPNK2.png" alt="PNK Inmobiliaria" style="height: 60px;" class="mb-3">
+                    <p class="small text-white-50 mb-0">Tu mejor opción en la Región de Coquimbo.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h5 class="fw-bold mb-3 text-warning"><i class="fa-solid fa-headset me-2"></i>Contacto</h5>
+                    <p class="mb-1 small text-white"><i class="fa-solid fa-envelope me-2"></i>info@pnkinmobiliaria.cl
+                    </p>
+                    <p class="mb-0 small text-white"><i class="fa-solid fa-phone me-2"></i>+56 9 1234 5678</p>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <h5 class="fw-bold mb-3 text-warning">Síguenos</h5>
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="#" class="text-white fs-4"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-light opacity-50 my-4">
+            <div class="text-center small text-white-50">
+                <p class="mb-0">© 2026 PNK Inmobiliaria. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
 
-    <script src="js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

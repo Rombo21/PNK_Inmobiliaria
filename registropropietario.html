@@ -9,15 +9,44 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="text-white py-3">
-        <div class="container d-flex justify-content-between align-items-center ">
-            <img src="img/LogoPNK2.png" alt="Logo PNK" style="height:120px;">
+    <header class="text-white py-3 shadow-sm bg-header-institutional">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <a href="index.html">
+                    <img src="img/LogoPNK2.png" alt="Logo PNK" class="me-2">
+                </a>
+            </div>
+            <div class="d-flex align-items-center">
+                <a href="index.html" class="fw-bold mx-2 text-white text-decoration-none">Inicio</a>
+                <a href="buscador.html" class="fw-bold mx-2 text-white text-decoration-none">Buscador</a>
+                <a href="login.html" class="fw-bold mx-2 text-white text-decoration-none">Iniciar Sesión</a>
+                <div class="dropdown mx-2">
+                    <a class="fw-bold dropdown-toggle text-warning text-decoration-none border-bottom border-warning" href="#" data-bs-toggle="dropdown">Regístrate</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item fw-bold" href="registropropietario.html">Propietario</a></li>
+                        <li><a class="dropdown-item" href="registrogestor.html">Gestor Freelance</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown ms-3">
+                    <a class="btn btn-outline-warning fw-bold btn-sm dropdown-toggle" href="#" data-bs-toggle="dropdown">Vistas de Prueba</a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow">
+                        <li><a class="dropdown-item fw-bold text-primary" href="dashboardadmin.html"><i class="fa-solid fa-user-shield me-2"></i>Dashboard Admin</a></li>
+                        <li><a class="dropdown-item fw-bold text-success" href="dashboardpropietario.html"><i class="fa-solid fa-house-user me-2"></i>Dashboard Propietario</a></li>
+                        <li><a class="dropdown-item fw-bold text-info" href="dashboardgestor.html"><i class="fa-solid fa-user-tie me-2"></i>Dashboard Gestor</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </header>
 
     <section class="container my-5">
-        <h2 class="mb-4 text-center">Formulario de Registro para Propietarios</h2>
-        <form class="row g-3">
+        <div class="card premium-card border-0 shadow-sm p-4 p-md-5 mx-auto" style="max-width: 800px; background-color: #ffffff;">
+            <div class="text-center mb-4">
+                <i class="fa-solid fa-house-user fa-3x text-warning mb-3"></i>
+                <h2 class="fw-bold">Registro de Propietarios</h2>
+                <p class="text-muted">Ingresa tus datos para publicar tus bienes raíces en nuestra red.</p>
+            </div>
+            <form class="row g-4">
 
         <div class="col-md-6">
             <label for="nombre" class="form-label fw-bold">Nombre completo</label>
@@ -26,7 +55,7 @@
 
         <div class="col-md-6">
             <label for="rut" class="form-label fw-bold">RUT</label>
-            <input type="text" id="rut" name="rut" class="form-control" placeholder="12.345.678-9" required>
+            <input type="text" id="rut" name="rut" class="form-control" placeholder="12345678-9" pattern="^[0-9]{7,8}-[0-9Kk]{1}$" title="Formato válido sin puntos y con guión. Ej: 12345678-9" required>
         </div>
 
         <div class="col-md-6">
@@ -41,7 +70,7 @@
 
         <div class="col-md-6">
             <label for="telefono" class="form-label fw-bold">Teléfono móvil</label>
-            <input type="tel" id="telefono" name="telefono" class="form-control" required>
+            <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="912345678" pattern="[0-9]{9}" title="Debe contener exactamente 9 dígitos numéricos" required>
         </div>
 
         <div class="col-md-6">
@@ -61,12 +90,12 @@
 
         <div class="col-md-6">
             <label for="password" class="form-label fw-bold">Contraseña</label>
-            <input type="password" id="password" name="password" class="form-control" required>
+            <input type="password" id="password" name="password" class="form-control" minlength="8" title="Debe contener al menos 8 caracteres" required>
         </div>
 
         <div class="col-md-6">
             <label for="confirmPassword" class="form-label fw-bold">Confirmar contraseña</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
+            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" minlength="8" title="Debe contener al menos 8 caracteres" required>
         </div>
 
         <div class="col-12">
@@ -74,11 +103,21 @@
             <a href="index.html"><button type="button" class="btn btn-outline-dark fw-bold">Cancelar</button></a>
         </div>
         </form>
+        </div>
     </section>
 
-<footer class="text-white py-3 mt-5">
-    <div class="container text-center">
-        <p class="mb-0">© 2026 PNK Inmobiliaria - Región de Coquimbo</p>
+<footer class="bg-header-institutional text-white py-5 mt-auto border-top border-warning border-3">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-md-12 text-center">
+                <img src="img/LogoPNK2.png" alt="PNK Inmobiliaria" style="height: 40px;" class="mb-3">
+                <p class="small text-white-50 mb-0">Confía tu propiedad a los expertos.</p>
+            </div>
+        </div>
+        <hr class="border-light opacity-50 my-4">
+        <div class="text-center small text-white-50">
+            <p class="mb-0">© 2026 PNK Inmobiliaria. Todos los derechos reservados.</p>
+        </div>
     </div>
 </footer>
 
