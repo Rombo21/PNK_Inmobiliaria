@@ -204,14 +204,15 @@ header img {
 @media (max-width: 991px) {
     header .container.d-flex {
         flex-direction: column !important;
-        text-align: center;
-        gap: 15px;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 15px !important;
     }
 
     header .d-flex.align-items-center {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
     }
 
     header .mx-2,
