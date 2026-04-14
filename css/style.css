@@ -1,9 +1,9 @@
-/* Definimos los colores principales de la marca para mantener consistencia */
+/* VARIABLES GLOBALES: Colores principales de la marca PNK para consistencia visual */
 :root {
-    --color-header: #0d47a1;
-    --color-secundario: #1976d2;
-    --color-acento: #ffc107;
-    --color-texto: #ffffff;
+    --color-header: #0d47a1;      /* Azul Institucional */
+    --color-secundario: #1976d2;  /* Azul Secundario */
+    --color-acento: #ffc107;      /* Amarillo/Dorado para resaltados */
+    --color-texto: #ffffff;       /* Texto claro */
 }
 
 /* Diseño general del menú superior y los títulos */
@@ -157,6 +157,7 @@ header img {
     color: var(--color-acento);
 }
 
+/* CARRUSEL: Ajustes de imagen para propiedades destacadas en el Index */
 .carousel-destacado img {
     height: 400px;
     object-fit: cover;
@@ -164,7 +165,7 @@ header img {
     border-radius: 8px;
 }
 
-/* Efectos visuales de sombreado y elevación para los paneles de los usuarios */
+/* PREMIUM CARD: Estilo moderno con sombras suaves (glassmorphism feel) y transiciones */
 .premium-card {
     border: none;
     border-radius: 15px;
@@ -200,7 +201,8 @@ header img {
     background-color: var(--color-header) !important;
 }
 
-/*responsividad para el Header en celular*/
+/* RESPONSIVIDAD: Ajustes para pantallas pequeñas (dispositivos móviles) */
+/* responsividad para el Header en celular */
 @media (max-width: 991px) {
     header .container.d-flex {
         flex-direction: column !important;
