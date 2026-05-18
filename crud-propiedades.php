@@ -35,10 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $propietarioId = $isAdmin ? intval($_POST['propietario_id'] ?? getUserId()) : getUserId();
 
         if ($action === 'crear') {
-            $codigo = generarCodigoPropiedad($pdo, $tipo);
-            $stmt = $pdo->prepare("INSERT INTO propiedades (codigo, propietario_id, tipo, descripcion, banos, dormitorios, area_terreno, area_construida, precio_clp, precio_uf, fecha_publicacion, provincia, comuna, sector, latitud, longitud, bodega, estacionamiento, logia, cocina_amoblada, antejardin, patio_trasero, piscina, estado) VALUES (?,?,?,?,?,?,?,?,?,?,CURDATE(),?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            $stmt->execute([$codigo, $propietarioId, $tipo, $descripcion, $banos, $dormitorios, $areaTerreno, $areaConstruida, $precioCLP, $precioUF, $provincia, $comuna, $sector, $latitud, $longitud, $bodega, $estacionamiento, $logia, $cocinaAmoblada, $antejardin, $patioTrasero, $piscina, $estado]);
-            $newPropId = $pdo->lastInsertId();
+            if (getUserType() === 'gestor') {
+                $msg = 'Los gestores no pueden crear propiedades.'; $msgType = 'danger';
+            } else {
+                $codigo = generarCodigoPropiedad($pdo, $tipo);
+                $stmt = $pdo->prepare("INSERT INTO propiedades (codigo, propietario_id, tipo, descripcion, banos, dormitorios, area_terreno, area_construida, precio_clp, precio_uf, fecha_publicacion, provincia, comuna, sector, latitud, longitud, bodega, estacionamiento, logia, cocina_amoblada, antejardin, patio_trasero, piscina, estado) VALUES (?,?,?,?,?,?,?,?,?,?,CURDATE(),?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                $stmt->execute([$codigo, $propietarioId, $tipo, $descripcion, $banos, $dormitorios, $areaTerreno, $areaConstruida, $precioCLP, $precioUF, $provincia, $comuna, $sector, $latitud, $longitud, $bodega, $estacionamiento, $logia, $cocinaAmoblada, $antejardin, $patioTrasero, $piscina, $estado]);
+                $newPropId = $pdo->lastInsertId();
 
             // Subir fotos
             if (isset($_FILES['fotos'])) {
@@ -52,12 +55,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
             }
-            $msg = "Propiedad creada con código: {$codigo}"; $msgType = 'success';
+            if (getUserType() !== 'gestor') {
+                $msg = "Propiedad creada con código: {$codigo}"; $msgType = 'success';
+            }
+            } // Cierre del else
         } elseif ($action === 'editar') {
             $propId = intval($_POST['prop_id']);
             $sql = "UPDATE propiedades SET tipo=?, descripcion=?, banos=?, dormitorios=?, area_terreno=?, area_construida=?, precio_clp=?, precio_uf=?, provincia=?, comuna=?, sector=?, latitud=?, longitud=?, bodega=?, estacionamiento=?, logia=?, cocina_amoblada=?, antejardin=?, patio_trasero=?, piscina=?, estado=? WHERE id=?";
             $executeParams = [$tipo, $descripcion, $banos, $dormitorios, $areaTerreno, $areaConstruida, $precioCLP, $precioUF, $provincia, $comuna, $sector, $latitud, $longitud, $bodega, $estacionamiento, $logia, $cocinaAmoblada, $antejardin, $patioTrasero, $piscina, $estado, $propId];
-            if (!$isAdmin) { $sql .= ' AND propietario_id=?'; $executeParams[] = getUserId(); }
+            if (getUserType() === 'propietario') { 
+                $sql .= ' AND propietario_id=?'; 
+                $executeParams[] = getUserId(); 
+            } elseif (getUserType() === 'gestor') {
+                $sql .= " AND id IN (SELECT propiedad_id FROM gestiones WHERE gestor_id=? AND estado='activo')";
+                $executeParams[] = getUserId();
+            }
             $stmt = $pdo->prepare($sql);
             $stmt->execute($executeParams);
 
@@ -78,12 +90,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $msg = 'Propiedad actualizada.'; $msgType = 'success';
         }
     } elseif ($action === 'eliminar') {
-        $propId = intval($_POST['prop_id']);
-        $sql = "DELETE FROM propiedades WHERE id=?";
-        $delParams = [$propId];
-        if (!$isAdmin) { $sql .= ' AND propietario_id=?'; $delParams[] = getUserId(); }
-        $pdo->prepare($sql)->execute($delParams);
-        $msg = 'Propiedad eliminada.'; $msgType = 'success';
+        if (getUserType() !== 'gestor') {
+            $propId = intval($_POST['prop_id']);
+            $sql = "DELETE FROM propiedades WHERE id=?";
+            $delParams = [$propId];
+            if (getUserType() === 'propietario') { 
+                $sql .= ' AND propietario_id=?'; 
+                $delParams[] = getUserId(); 
+            }
+            try {
+                $pdo->prepare($sql)->execute($delParams);
+                $msg = 'Propiedad eliminada.'; $msgType = 'success';
+            } catch (PDOException $e) {
+                if ($e->getCode() == '23000') {
+                    $msg = 'No se puede eliminar la propiedad porque tiene gestiones o visitas asociadas. Finalícelas o cancélelas primero.';
+                } else {
+                    $msg = 'Error al eliminar la propiedad.';
+                }
+                $msgType = 'danger';
+            }
+        } else {
+            $msg = 'Los gestores no pueden eliminar propiedades.'; $msgType = 'danger';
+        }
     }
 }
 
@@ -97,7 +125,13 @@ $offset = ($page - 1) * $perPage;
 
 $params = [];
 $where = "WHERE 1=1";
-if (!$isAdmin) { $where .= " AND propietario_id = ?"; $params[] = getUserId(); }
+if (getUserType() === 'propietario') { 
+    $where .= " AND propietario_id = ?"; 
+    $params[] = getUserId(); 
+} elseif (getUserType() === 'gestor') {
+    $where .= " AND id IN (SELECT propiedad_id FROM gestiones WHERE gestor_id = ? AND estado = 'activo')";
+    $params[] = getUserId();
+}
 if ($filtroTipo) { $where .= " AND tipo = ?"; $params[] = $filtroTipo; }
 if ($filtroEstado) { $where .= " AND estado = ?"; $params[] = $filtroEstado; }
 if ($filtroComuna) { $where .= " AND comuna LIKE ?"; $params[] = "%{$filtroComuna}%"; }
@@ -116,7 +150,13 @@ $editProp = null;
 if (isset($_GET['edit'])) {
     $q = "SELECT * FROM propiedades WHERE id = ?";
     $editParams = [intval($_GET['edit'])];
-    if (!$isAdmin) { $q .= " AND propietario_id = ?"; $editParams[] = getUserId(); }
+    if (getUserType() === 'propietario') { 
+        $q .= " AND propietario_id = ?"; 
+        $editParams[] = getUserId(); 
+    } elseif (getUserType() === 'gestor') {
+        $q .= " AND id IN (SELECT propiedad_id FROM gestiones WHERE gestor_id = ? AND estado = 'activo')";
+        $editParams[] = getUserId();
+    }
     $se = $pdo->prepare($q);
     $se->execute($editParams);
     $editProp = $se->fetch();
@@ -136,13 +176,11 @@ if ($isAdmin) {
         <h2 class="fw-bold"><i class="fas fa-building text-warning me-2"></i><?= $isAdmin ? 'Mantenedor de Propiedades' : 'Mis Propiedades' ?></h2>
         <div>
             <?php if ($isAdmin): ?><a href="dashboard.php" class="btn btn-outline-primary me-2"><i class="fas fa-arrow-left me-1"></i>Dashboard</a><?php endif; ?>
-            <a href="?new=1" class="btn btn-warning text-dark fw-bold"><i class="fas fa-plus me-1"></i>Nueva Propiedad</a>
+            <?php if (getUserType() !== 'gestor'): ?>
+                <a href="?new=1" class="btn btn-warning text-dark fw-bold"><i class="fas fa-plus me-1"></i>Nueva Propiedad</a>
+            <?php endif; ?>
         </div>
     </div>
-
-    <?php if ($msg): ?>
-        <div class="alert alert-<?= $msgType ?> alert-dismissible fade show"><i class="fas fa-<?= $msgType==='success'?'check':'exclamation' ?>-circle me-2"></i><?= sanitize($msg) ?><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
-    <?php endif; ?>
 
     <?php if ($showForm): ?>
     <!-- Formulario Crear/Editar -->

@@ -2,8 +2,15 @@
 :root {
     --color-header: #0d47a1;
     --color-secundario: #1976d2;
+    --color-dark: #0a1950;
     --color-acento: #ffc107;
     --color-texto: #ffffff;
+    --font-body: 'Lato', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    --shadow-card: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+    --radius: 10px;
 }
 
 /* Diseño general del menú superior y los títulos */
@@ -249,86 +256,18 @@ h6 {
     box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
 }
 
-/* ========== FOOTER ========== */
+/* ========== CUSTOM HOVER LINKS (FOOTER) ========== */
 .footer-pnk {
     background: linear-gradient(135deg, var(--color-header), var(--color-dark));
-    color: #fff;
-    position: relative;
-    margin-top: auto;
 }
 
-.footer-wave {
-    position: relative;
-    top: -1px;
-    color: var(--color-header);
+.custom-hover-link {
+    transition: opacity 0.3s ease, color 0.3s ease;
 }
 
-.footer-wave svg {
-    display: block;
-    width: 100%;
-    height: 60px;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem 2rem;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.footer-logo {
-    height: 50px;
-    margin-bottom: 0.8rem;
-}
-
-.footer-tagline {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
-}
-
-.footer-title {
-    color: var(--color-acento);
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    font-family: var(--font-body);
-}
-
-.footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-links li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-links a {
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    transition: var(--transition);
-    font-size: 0.9rem;
-}
-
-.footer-links a:hover {
-    color: var(--color-acento);
-}
-
-.footer-contact-list li {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9rem;
-}
-
-.footer-contact-list i {
-    width: 20px;
-    color: var(--color-acento);
+.custom-hover-link:hover {
+    opacity: 1 !important;
+    color: var(--color-acento) !important;
 }
 
 .carousel-destacado img {

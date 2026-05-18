@@ -71,6 +71,27 @@ $totalVisitas = $pdo->query("SELECT COUNT(*) FROM visitas WHERE estado='pendient
                 </div>
             </a>
         </div>
+        <div class="col-md-6 mt-4">
+            <a href="crud-gestiones.php" class="text-decoration-none">
+                <div class="card premium-card border-0 shadow p-5 text-center h-100">
+                    <i class="fas fa-handshake fa-5x text-info mb-4"></i>
+                    <h3 class="fw-bold text-dark">Gestiones</h3>
+                    <p class="text-muted">Asignar gestores freelance a las propiedades publicadas</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6 mt-4">
+            <a href="crud-visitas.php" class="text-decoration-none">
+                <div class="card premium-card border-0 shadow p-5 text-center h-100">
+                    <i class="fas fa-calendar-check fa-5x text-danger mb-4"></i>
+                    <h3 class="fw-bold text-dark">Administrar Visitas</h3>
+                    <p class="text-muted">Revisar y actualizar el estado de las solicitudes de visitas</p>
+                    <?php if ($totalVisitas > 0): ?>
+                        <span class="badge bg-danger text-white fs-6"><?= $totalVisitas ?> visitas pendientes</span>
+                    <?php endif; ?>
+                </div>
+            </a>
+        </div>
     </div>
 </section>
 

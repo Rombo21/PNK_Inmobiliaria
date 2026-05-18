@@ -1,56 +1,90 @@
     </main>
-    <!-- Footer -->
-    <footer class="footer-pnk" id="contacto">
-        <div class="footer-wave">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
-                <path fill="currentColor" d="M0,40 C360,100 720,0 1080,60 C1260,90 1380,30 1440,50 L1440,100 L0,100 Z"/>
-            </svg>
-        </div>
-        <div class="footer-content">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <img src="img/LogoPNK2.png" alt="PNK Inmobiliaria" class="footer-logo">
-                    <p class="footer-tagline">Transformando la forma de encontrar tu lugar ideal en la Región de Coquimbo.</p>
+    <!-- Footer Moderno y Minimalista -->
+    <footer class="footer-pnk text-white py-5 mt-auto" id="contacto" style="border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                    <img src="img/LogoPNK2.png" alt="PNK Inmobiliaria" class="mb-3" style="height: 60px; object-fit: contain;">
+                    <p class="text-white small">Transformando la forma de encontrar tu lugar ideal en la Región de Coquimbo. Transparencia, confianza y cercanía.</p>
                 </div>
                 
-                <div class="footer-links-group">
-                    <h4 class="footer-title">Navegación</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.php"><i class="fas fa-home"></i> Inicio</a></li>
-                        <li><a href="index.php#buscador"><i class="fas fa-search"></i> Buscar Propiedades</a></li>
-                        <li><a href="registro-propietario.php"><i class="fas fa-user-plus"></i> Registro Propietario</a></li>
-                        <li><a href="registro-gestor.php"><i class="fas fa-user-tie"></i> Registro Gestor</a></li>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-3" style="letter-spacing: 1px; color: var(--color-acento);">Navegación</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="index.php" class="text-white text-decoration-none opacity-75 custom-hover-link">Inicio</a></li>
+                        <li class="mb-2"><a href="index.php#buscador" class="text-white text-decoration-none opacity-75 custom-hover-link">Buscar Propiedades</a></li>
+                        <li class="mb-2"><a href="registro-propietario.php" class="text-white text-decoration-none opacity-75 custom-hover-link">Registro Propietario</a></li>
+                        <li class="mb-2"><a href="registro-gestor.php" class="text-white text-decoration-none opacity-75 custom-hover-link">Registro Gestor</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-links-group">
-                    <h4 class="footer-title"><i class="fas fa-headset"></i> Contacto</h4>
-                    <ul class="footer-links footer-contact-list">
-                        <li><i class="fas fa-envelope"></i> info@pnkinmobiliaria.cl</li>
-                        <li><i class="fas fa-phone"></i> +56 9 1234 5678</li>
-                        <li><i class="fas fa-map-marker-alt"></i> La Serena, Chile</li>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-3" style="letter-spacing: 1px; color: var(--color-acento);">Contacto</h6>
+                    <ul class="list-unstyled mb-0 text-white small">
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@pnkinmobiliaria.cl</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +56 9 1234 5678</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> La Serena, Chile</li>
                     </ul>
                 </div>
                 
-                <div class="footer-links-group">
-                    <h4 class="footer-title">Síguenos</h4>
-                    <div class="footer-social">
-                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-3" style="letter-spacing: 1px; color: var(--color-acento);">Síguenos</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white opacity-75 custom-hover-link fs-5"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-white opacity-75 custom-hover-link fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white opacity-75 custom-hover-link fs-5"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white opacity-75 custom-hover-link fs-5"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <p>&copy; <?= date('Y') ?> PNK Inmobiliaria. Todos los derechos reservados.</p>
+            <hr class="mt-5 mb-4 border-light opacity-25">
+            
+            <div class="text-center text-white small">
+                <p class="mb-0">&copy; <?= date('Y') ?> PNK Inmobiliaria. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+    // SweetAlert para confirmaciones de eliminación
+    function confirmDelete(event, form) {
+        event.preventDefault();
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    }
+    </script>
+
+    <?php if (isset($msg) && !empty($msg)): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: '<?= ($msgType === "success") ? "success" : "error" ?>',
+                title: '<?= ($msgType === "success") ? "¡Éxito!" : "¡Atención!" ?>',
+                text: '<?= addslashes(strip_tags($msg)) ?>',
+                confirmButtonColor: '#ffc107',
+                confirmButtonText: 'Aceptar'
+            });
+        });
+    </script>
+    <?php endif; ?>
+
     <?php if (isset($extraScripts)): ?>
         <?php foreach ($extraScripts as $script): ?>
             <script src="<?= $script ?>"></script>

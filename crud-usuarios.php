@@ -34,8 +34,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($action === 'eliminar' && $userId) {
         // No eliminar al admin principal (id=1)
         if ($userId > 1) {
-            $pdo->prepare("DELETE FROM usuarios WHERE id = ? AND id != 1")->execute([$userId]);
-            $msg = 'Usuario eliminado.'; $msgType = 'success';
+            try {
+                $pdo->prepare("DELETE FROM usuarios WHERE id = ? AND id != 1")->execute([$userId]);
+                $msg = 'Usuario eliminado.'; $msgType = 'success';
+            } catch (PDOException $e) {
+                if ($e->getCode() == '23000') {
+                    $msg = 'No se puede eliminar el usuario porque tiene propiedades, visitas o gestiones asociadas.';
+                } else {
+                    $msg = 'Error al eliminar el usuario.';
+                }
+                $msgType = 'danger';
+            }
         } else {
             $msg = 'No se puede eliminar al administrador principal.'; $msgType = 'danger';
         }
@@ -87,13 +96,6 @@ if (isset($_GET['edit'])) {
         <h2 class="fw-bold"><i class="fas fa-users-cog text-warning me-2"></i>Mantenedor de Usuarios</h2>
         <a href="dashboard.php" class="btn btn-outline-primary"><i class="fas fa-arrow-left me-1"></i>Dashboard</a>
     </div>
-
-    <?php if ($msg): ?>
-        <div class="alert alert-<?= $msgType ?> alert-dismissible fade show">
-            <i class="fas fa-<?= $msgType==='success'?'check':'exclamation' ?>-circle me-2"></i><?= sanitize($msg) ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    <?php endif; ?>
 
     <!-- Filtros -->
     <div class="card premium-card border-0 shadow p-3 mb-4">

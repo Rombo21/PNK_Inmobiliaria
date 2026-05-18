@@ -6,7 +6,10 @@ $error = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $rut = sanitize($_POST['rut'] ?? '');
+    if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+        $error = 'Token de seguridad inválido. Recargue la página.';
+    } else {
+        $rut = sanitize($_POST['rut'] ?? '');
     $nombre = sanitize($_POST['nombre_completo'] ?? '');
     $fechaNac = $_POST['fecha_nacimiento'] ?? '';
     $correo = filter_input(INPUT_POST, 'correo', FILTER_SANITIZE_EMAIL);
@@ -19,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!validarRut($rutLimpio)) {
         $error = 'El RUT ingresado no es válido.';
-    } elseif (strlen($password) < 6) {
-        $error = 'La contraseña debe tener al menos 6 caracteres.';
+    } elseif (!validarPassword($password)) {
+        $error = 'La contraseña debe tener al menos 8 caracteres, letras y números.';
     } elseif ($password !== $passwordConfirm) {
         $error = 'Las contraseñas no coinciden.';
     } elseif (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
@@ -50,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $success = 'Postulación enviada. Si eres aceptado recibirás tu PENKA_ID por correo.';
             }
         }
+        }
     }
 }
 ?>
@@ -58,14 +62,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="card premium-card border-0 shadow p-4">
         <h2 class="text-center fw-bold mb-4"><i class="fas fa-user-tie text-warning me-2"></i>Registro Gestor Freelance</h2>
 
-        <?php if ($error): ?>
-            <div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i><?= $error ?></div>
-        <?php endif; ?>
-        <?php if ($success): ?>
-            <div class="alert alert-success"><i class="fas fa-check-circle me-2"></i><?= $success ?></div>
-        <?php else: ?>
+        <?php 
+            if ($error) { $msg = $error; $msgType = 'danger'; }
+            if ($success) { $msg = $success; $msgType = 'success'; }
+        ?>
+        <?php if (!$success): ?>
 
         <form method="POST" enctype="multipart/form-data" data-validate>
+            <input type="hidden" name="csrf_token" value="<?= generateCsrfToken() ?>">
             <div class="row g-3">
                 <div class="col-md-6">
                     <label class="form-label fw-bold">RUT</label>
@@ -86,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Contraseña</label>
-                    <input type="password" name="password" class="form-control" required minlength="6">
+                    <input type="password" name="password" class="form-control" required minlength="8" placeholder="Mín. 8 caracteres, letras y números">
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Confirmar Contraseña</label>

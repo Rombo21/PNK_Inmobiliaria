@@ -184,3 +184,33 @@ function handleFileUpload(array $file, string $destDir, array $allowedExts, int 
     
     return $result;
 }
+
+/**
+ * Genera un token CSRF y lo guarda en sesión
+ */
+function generateCsrfToken(): string {
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+/**
+ * Valida un token CSRF
+ */
+function validateCsrfToken(?string $token): bool {
+    if (empty($_SESSION['csrf_token']) || empty($token)) {
+        return false;
+    }
+    return hash_equals($_SESSION['csrf_token'], $token);
+}
+
+/**
+ * Valida que una contraseña sea segura (mínimo 8 caracteres, al menos una letra y un número)
+ */
+function validarPassword(string $password): bool {
+    if (strlen($password) < 8) return false;
+    if (!preg_match('/[A-Za-z]/', $password)) return false;
+    if (!preg_match('/[0-9]/', $password)) return false;
+    return true;
+}

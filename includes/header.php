@@ -52,10 +52,14 @@ $pageDescription = $pageDescription ?? 'Plataforma inmobiliaria líder en la Reg
                                 <a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                                 <a href="crud-usuarios.php"><i class="fas fa-users-cog"></i> Usuarios</a>
                                 <a href="crud-propiedades.php"><i class="fas fa-building"></i> Propiedades</a>
+                                <a href="crud-gestiones.php"><i class="fas fa-handshake"></i> Gestiones</a>
+                                <a href="crud-visitas.php"><i class="fas fa-calendar-check"></i> Visitas</a>
                             <?php elseif (getUserType() === 'propietario'): ?>
                                 <a href="crud-propiedades.php"><i class="fas fa-building"></i> Mis Propiedades</a>
+                                <a href="crud-visitas.php"><i class="fas fa-calendar-check"></i> Visitas</a>
                             <?php elseif (getUserType() === 'gestor'): ?>
-                                <a href="crud-propiedades.php"><i class="fas fa-building"></i> Gestiones</a>
+                                <a href="crud-propiedades.php"><i class="fas fa-building"></i> Mis Propiedades Asignadas</a>
+                                <a href="crud-visitas.php"><i class="fas fa-calendar-check"></i> Visitas a Gestionar</a>
                             <?php endif; ?>
                             <div class="dropdown-divider"></div>
                             <a href="logout.php" class="text-danger"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>

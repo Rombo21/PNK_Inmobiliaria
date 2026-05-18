@@ -21,8 +21,11 @@ $fotos = $stmtFotos->fetchAll();
 // Procesar solicitud de visita
 $visitaMsg = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['solicitar_visita'])) {
-    $nombre = sanitize($_POST['nombre_visitante'] ?? '');
-    $correo = filter_input(INPUT_POST, 'correo_visita', FILTER_SANITIZE_EMAIL);
+    if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+        $visitaMsg = 'error';
+    } else {
+        $nombre = sanitize($_POST['nombre_visitante'] ?? '');
+        $correo = filter_input(INPUT_POST, 'correo_visita', FILTER_SANITIZE_EMAIL);
     $telefono = sanitize($_POST['telefono_visita'] ?? '');
     $fecha = $_POST['fecha_visita'] ?? '';
     $mensaje = sanitize($_POST['mensaje_visita'] ?? '');
@@ -31,8 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['solicitar_visita'])) 
         $stmt = $pdo->prepare("INSERT INTO visitas (propiedad_id, nombre_visitante, correo, telefono, fecha_solicitada, mensaje) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->execute([$id, $nombre, $correo, $telefono, $fecha, $mensaje]);
         $visitaMsg = 'success';
-    } else {
-        $visitaMsg = 'error';
+        } else {
+            $visitaMsg = 'error';
+        }
     }
 }
 $shareUrl = urlencode(SITE_URL . '/detalle-propiedad.php?id=' . $id);
@@ -141,12 +145,12 @@ $shareText = urlencode(ucfirst($prop['tipo']) . ' en ' . $prop['sector'] . ' - P
     <!-- Solicitar Visita -->
     <div class="card premium-card border-0 shadow p-4 mt-4">
         <h4 class="fw-bold"><i class="fas fa-calendar-alt text-warning me-2"></i>Solicitar Visita</h4>
-        <?php if ($visitaMsg === 'success'): ?>
-            <div class="alert alert-success"><i class="fas fa-check-circle me-2"></i>¡Solicitud enviada exitosamente!</div>
-        <?php elseif ($visitaMsg === 'error'): ?>
-            <div class="alert alert-danger">Complete todos los campos obligatorios.</div>
-        <?php endif; ?>
+        <?php 
+            if ($visitaMsg === 'success') { $msg = '¡Solicitud enviada exitosamente!'; $msgType = 'success'; }
+            if ($visitaMsg === 'error') { $msg = 'Complete todos los campos obligatorios.'; $msgType = 'danger'; }
+        ?>
         <form method="POST">
+            <input type="hidden" name="csrf_token" value="<?= generateCsrfToken() ?>">
             <input type="hidden" name="solicitar_visita" value="1">
             <div class="row g-3">
                 <div class="col-md-6">

@@ -7,7 +7,9 @@ $success = '';
 
 // Procesar login
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    if ($_POST['action'] === 'login') {
+    if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+        $error = 'Token de seguridad inválido. Recargue la página.';
+    } elseif ($_POST['action'] === 'login') {
         $correo = filter_input(INPUT_POST, 'correo', FILTER_SANITIZE_EMAIL);
         $password = $_POST['password'] ?? '';
 
@@ -22,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 if ($user['estado'] !== 'activo') {
                     $error = 'Su cuenta aún no ha sido activada. Por favor espere la confirmación del administrador.';
                 } else {
+                    session_regenerate_id(true);
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['nombre_completo'] = $user['nombre_completo'];
                     $_SESSION['tipo_usuario'] = $user['tipo_usuario'];
@@ -59,14 +62,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     <div class="card premium-card border-0 shadow p-4 mb-4">
         <h2 class="text-center fw-bold mb-4"><i class="fas fa-sign-in-alt text-warning me-2"></i>Iniciar Sesión</h2>
 
-        <?php if ($error): ?>
-            <div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i><?= sanitize($error) ?></div>
-        <?php endif; ?>
-        <?php if ($success): ?>
-            <div class="alert alert-success"><i class="fas fa-check-circle me-2"></i><?= sanitize($success) ?></div>
-        <?php endif; ?>
+        <?php 
+            if ($error) { $msg = $error; $msgType = 'danger'; }
+            if ($success) { $msg = $success; $msgType = 'success'; }
+        ?>
 
         <form method="POST" data-validate>
+            <input type="hidden" name="csrf_token" value="<?= generateCsrfToken() ?>">
             <input type="hidden" name="action" value="login">
             <div class="mb-3">
                 <label class="form-label fw-bold">Correo Electrónico</label>
@@ -92,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         <div class="card premium-card border-0 shadow p-4">
             <h3 class="text-center fw-bold mb-3"><i class="fas fa-key text-warning me-2"></i>Recuperar Contraseña</h3>
             <form method="POST">
+                <input type="hidden" name="csrf_token" value="<?= generateCsrfToken() ?>">
                 <input type="hidden" name="action" value="recuperar">
                 <div class="mb-3">
                     <label class="form-label fw-bold">Correo Electrónico</label>

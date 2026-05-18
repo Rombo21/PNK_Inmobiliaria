@@ -143,9 +143,24 @@ function initImagePreview() {
 function initDeleteConfirmation() {
     document.querySelectorAll('[data-confirm]').forEach(el => {
         el.addEventListener('click', function(e) {
-            if (!confirm(this.dataset.confirm || '¿Está seguro de realizar esta acción?')) {
-                e.preventDefault();
-            }
+            e.preventDefault();
+            const btn = this;
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: btn.dataset.confirm || "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Sí, continuar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const form = btn.closest('form');
+                    if (form) form.submit();
+                    else window.location.href = btn.href;
+                }
+            });
         });
     });
 }
@@ -186,7 +201,8 @@ function buscarPropiedades() {
             `).join('') + '</div>';
         })
         .catch(() => {
-            container.innerHTML = '<div class="alert alert-danger">Error al buscar propiedades.</div>';
+            container.innerHTML = '<div class="text-center py-5 text-danger"><i class="fas fa-exclamation-triangle fa-3x mb-3"></i><p>Error al buscar propiedades.</p></div>';
+            showAlert('Error al conectar con el servidor', 'error');
         });
 }
 
@@ -235,10 +251,11 @@ function initCarousel(containerId) {
 
 /* ========== ALERTS ========== */
 function showAlert(message, type = 'success') {
-    const alert = document.createElement('div');
-    alert.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
-    alert.style.cssText = 'top:100px;right:20px;z-index:9999;min-width:300px;';
-    alert.innerHTML = `${message}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
-    document.body.appendChild(alert);
-    setTimeout(() => alert.remove(), 4000);
+    Swal.fire({
+        icon: type === 'success' ? 'success' : 'error',
+        title: type === 'success' ? '¡Éxito!' : '¡Atención!',
+        text: message,
+        confirmButtonColor: '#ffc107',
+        confirmButtonText: 'Aceptar'
+    });
 }
