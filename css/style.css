@@ -1,21 +1,21 @@
-/* ==========================================
-    PNK INMOBILIARIA — Estilos Principales
-   ========================================== */
-
-/* Variables de diseño */
+/* Definimos los colores principales de la marca para mantener consistencia */
 :root {
     --color-header: #0d47a1;
     --color-secundario: #1976d2;
     --color-acento: #ffc107;
     --color-texto: #ffffff;
-    --color-dark: #0a1950;
-    --color-gold: #d4a843;
-    --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'Lato', 'Segoe UI', sans-serif;
-    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.15);
-    --radius: 15px;
-    --transition: all 0.3s ease;
+}
+
+/* Diseño general del menú superior y los títulos */
+header {
+    background-color: var(--color-header);
+}
+
+header a {
+    font-size: large;
+    color: var(--color-acento);
+    font-weight: bold;
+    text-decoration: none;
 }
 
 * {
@@ -331,37 +331,19 @@ h6 {
     color: var(--color-acento);
 }
 
-.footer-social {
-    display: flex;
-    gap: 0.8rem;
+.carousel-destacado img {
+    height: 400px;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 8px;
 }
 
-.social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    color: #fff;
-    text-decoration: none;
-    transition: var(--transition);
-    font-size: 1.1rem;
-}
-
-.social-link:hover {
-    background: var(--color-acento);
-    color: var(--color-header);
-    transform: translateY(-3px);
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    padding-top: 1.5rem;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.85rem;
+/* Efectos visuales de sombreado y elevación para los paneles de los usuarios */
+.premium-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* ========== FORMS ========== */
@@ -514,25 +496,25 @@ h6 {
     background-color: var(--color-header) !important;
 }
 
-/* Validation states */
-.is-valid {
-    border-color: #28a745 !important;
-}
+/*responsividad para el Header en celular*/
+@media (max-width: 991px) {
+    header .container.d-flex {
+        flex-direction: column !important;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 15px !important;
+    }
 
-.is-invalid {
-    border-color: #dc3545 !important;
-}
+    header .d-flex.align-items-center {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+    }
 
-/* Prevent blue text on dark blue backgrounds */
-.hero-section .text-primary,
-.footer-pnk .text-primary,
-.navbar-pnk .text-primary,
-.bg-header-institutional .text-primary {
-    color: var(--color-acento) !important;
-}
-
-.hero-section .text-dark:not(.btn),
-.footer-pnk .text-dark:not(.btn),
-.navbar-pnk .text-dark:not(.btn) {
-    color: #fff !important;
+    header .mx-2,
+    header .dropdown,
+    header .text-end {
+        margin: 5px !important;
+        text-align: center !important;
+    }
 }
