@@ -87,7 +87,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
             }
-            $msg = 'Propiedad actualizada.'; $msgType = 'success';
+            
+            // Eliminar fotos seleccionadas
+            if (!empty($_POST['eliminar_fotos']) && is_array($_POST['eliminar_fotos'])) {
+                foreach ($_POST['eliminar_fotos'] as $fotoId) {
+                    $fotoId = intval($fotoId);
+                    $stmtF = $pdo->prepare("SELECT ruta_imagen FROM fotos_propiedad WHERE id = ? AND propiedad_id = ?");
+                    $stmtF->execute([$fotoId, $propId]);
+                    $ruta = $stmtF->fetchColumn();
+                    if ($ruta) {
+                        $fullPath = UPLOADS_DIR . $ruta;
+                        if (file_exists($fullPath)) @unlink($fullPath);
+                        $pdo->prepare("DELETE FROM fotos_propiedad WHERE id = ?")->execute([$fotoId]);
+                    }
+                }
+            }
+            $msg = 'Propiedad actualizada correctamente.'; $msgType = 'success';
         }
     } elseif ($action === 'eliminar') {
         if (getUserType() !== 'gestor') {
@@ -160,6 +175,13 @@ if (isset($_GET['edit'])) {
     $se = $pdo->prepare($q);
     $se->execute($editParams);
     $editProp = $se->fetch();
+    
+    // Obtener fotos actuales para edición
+    if ($editProp) {
+        $sf = $pdo->prepare("SELECT * FROM fotos_propiedad WHERE propiedad_id = ? ORDER BY orden ASC");
+        $sf->execute([$editProp['id']]);
+        $fotosEdit = $sf->fetchAll();
+    }
 }
 
 $showForm = isset($_GET['new']) || $editProp;
@@ -284,10 +306,27 @@ if ($isAdmin) {
                     </div>
                 </div>
                 <div class="col-12">
-                    <label class="form-label fw-bold">Fotos (máx 10, 5MB c/u)</label>
+                    <label class="form-label fw-bold">Agregar Nuevas Fotos (máx 10, 5MB c/u)</label>
                     <input type="file" name="fotos[]" class="form-control" multiple accept="image/*" data-preview="foto-preview">
                     <div id="foto-preview" class="d-flex flex-wrap mt-2"></div>
                 </div>
+                
+                <?php if ($editProp && !empty($fotosEdit)): ?>
+                <div class="col-12 mt-3">
+                    <label class="form-label fw-bold text-danger"><i class="fas fa-trash-alt me-1"></i>Fotos Actuales (Marca la casilla para eliminar)</label>
+                    <div class="d-flex flex-wrap gap-3 mt-2 p-3 border rounded bg-light">
+                        <?php foreach ($fotosEdit as $f): ?>
+                        <div class="position-relative border rounded p-1 bg-white shadow-sm text-center">
+                            <img src="<?= UPLOADS_URL . sanitize($f['ruta_imagen']) ?>" class="rounded mb-2" style="width:120px; height:90px; object-fit:cover;">
+                            <div class="form-check d-flex justify-content-center align-items-center">
+                                <input type="checkbox" name="eliminar_fotos[]" value="<?= $f['id'] ?>" id="del_foto_<?= $f['id'] ?>" class="form-check-input border-danger me-2" style="transform: scale(1.3); cursor: pointer;">
+                                <label class="form-check-label text-danger small fw-bold" for="del_foto_<?= $f['id'] ?>" style="cursor: pointer;">Borrar</label>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php endif; ?>
             </div>
             <div class="mt-4">
                 <button type="submit" class="btn btn-warning text-dark fw-bold"><i class="fas fa-save me-1"></i>Guardar</button>
