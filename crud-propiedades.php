@@ -96,7 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmtF->execute([$fotoId, $propId]);
                     $ruta = $stmtF->fetchColumn();
                     if ($ruta) {
-                        $fullPath = UPLOADS_DIR . $ruta;
+                        // $ruta ya incluye 'uploads/' o 'img/'
+                        $fullPath = __DIR__ . '/' . $ruta;
                         if (file_exists($fullPath)) @unlink($fullPath);
                         $pdo->prepare("DELETE FROM fotos_propiedad WHERE id = ?")->execute([$fotoId]);
                     }
@@ -317,8 +318,7 @@ if ($isAdmin) {
                     <div class="d-flex flex-wrap gap-3 mt-2 p-3 border rounded bg-light">
                         <?php 
                         foreach ($fotosEdit as $f): 
-                            $esDummy = strpos($f['ruta_imagen'], 'img/') === 0;
-                            $imgSrc = $esDummy ? SITE_URL . '/' . sanitize($f['ruta_imagen']) : UPLOADS_URL . sanitize($f['ruta_imagen']);
+                            $imgSrc = SITE_URL . '/' . sanitize($f['ruta_imagen']);
                         ?>
                         <div class="position-relative border rounded p-1 bg-white shadow-sm text-center">
                             <img src="<?= $imgSrc ?>" class="rounded mb-2" style="width:120px; height:90px; object-fit:cover;">
