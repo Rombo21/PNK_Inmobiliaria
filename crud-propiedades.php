@@ -315,9 +315,13 @@ if ($isAdmin) {
                 <div class="col-12 mt-3">
                     <label class="form-label fw-bold text-danger"><i class="fas fa-trash-alt me-1"></i>Fotos Actuales (Marca la casilla para eliminar)</label>
                     <div class="d-flex flex-wrap gap-3 mt-2 p-3 border rounded bg-light">
-                        <?php foreach ($fotosEdit as $f): ?>
+                        <?php 
+                        foreach ($fotosEdit as $f): 
+                            $esDummy = strpos($f['ruta_imagen'], 'img/') === 0;
+                            $imgSrc = $esDummy ? SITE_URL . '/' . sanitize($f['ruta_imagen']) : UPLOADS_URL . sanitize($f['ruta_imagen']);
+                        ?>
                         <div class="position-relative border rounded p-1 bg-white shadow-sm text-center">
-                            <img src="<?= UPLOADS_URL . sanitize($f['ruta_imagen']) ?>" class="rounded mb-2" style="width:120px; height:90px; object-fit:cover;">
+                            <img src="<?= $imgSrc ?>" class="rounded mb-2" style="width:120px; height:90px; object-fit:cover;">
                             <div class="form-check d-flex justify-content-center align-items-center">
                                 <input type="checkbox" name="eliminar_fotos[]" value="<?= $f['id'] ?>" id="del_foto_<?= $f['id'] ?>" class="form-check-input border-danger me-2" style="transform: scale(1.3); cursor: pointer;">
                                 <label class="form-check-label text-danger small fw-bold" for="del_foto_<?= $f['id'] ?>" style="cursor: pointer;">Borrar</label>
