@@ -50,7 +50,13 @@ try {
 
 // Configuración general del sitio
 define('SITE_NAME', 'PNK Inmobiliaria');
-define('SITE_URL', $_ENV['SITE_URL'] ?? getenv('SITE_URL') ?: 'http://localhost/PNK_Inmobiliaria');
+
+// Autodetectar la URL correcta (AWS vs Local)
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$baseDir = ($host === 'localhost' || $host === '127.0.0.1') ? '/PNK_Inmobiliaria' : '';
+define('SITE_URL', $_ENV['SITE_URL'] ?? getenv('SITE_URL') ?: $protocol . $host . $baseDir);
+
 define('UPLOADS_DIR', __DIR__ . '/../uploads/');
 define('UPLOADS_URL', SITE_URL . '/uploads/');
 
