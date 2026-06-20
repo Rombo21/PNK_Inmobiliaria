@@ -47,7 +47,7 @@
     </footer>
 
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=1.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <script>
