@@ -103,6 +103,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
             }
+
+            // Seleccionar foto principal y reordenar
+            $fotoPrincipalId = isset($_POST['foto_principal']) ? intval($_POST['foto_principal']) : 0;
+            if ($fotoPrincipalId > 0) {
+                // Obtener todas las fotos actuales que quedan
+                $stmtF = $pdo->prepare("SELECT id FROM fotos_propiedad WHERE propiedad_id = ? ORDER BY orden, id");
+                $stmtF->execute([$propId]);
+                $todasLasFotos = $stmtF->fetchAll(PDO::FETCH_COLUMN);
+                
+                // Mover el ID seleccionado al principio de la lista
+                if (($key = array_search($fotoPrincipalId, $todasLasFotos)) !== false) {
+                    unset($todasLasFotos[$key]);
+                    array_unshift($todasLasFotos, $fotoPrincipalId);
+                }
+                
+                // Actualizar el orden secuencialmente de 1 a N
+                $stmtUpdate = $pdo->prepare("UPDATE fotos_propiedad SET orden = ? WHERE id = ?");
+                foreach ($todasLasFotos as $idx => $fId) {
+                    $stmtUpdate->execute([$idx + 1, $fId]);
+                }
+            } else {
+                // Consolidar el orden de las restantes de 1 a N si no se indicó una en específico
+                $stmtF = $pdo->prepare("SELECT id FROM fotos_propiedad WHERE propiedad_id = ? ORDER BY orden, id");
+                $stmtF->execute([$propId]);
+                $restoFotos = $stmtF->fetchAll(PDO::FETCH_COLUMN);
+                if (!empty($restoFotos)) {
+                    $stmtUpdate = $pdo->prepare("UPDATE fotos_propiedad SET orden = ? WHERE id = ?");
+                    foreach ($restoFotos as $idx => $fId) {
+                        $stmtUpdate->execute([$idx + 1, $fId]);
+                    }
+                }
+            }
+
             $msg = 'Propiedad actualizada correctamente.'; $msgType = 'success';
         }
     } elseif ($action === 'eliminar') {
@@ -134,7 +167,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Filtros
 $filtroTipo = $_GET['tipo'] ?? '';
 $filtroEstado = $_GET['estado_prop'] ?? '';
+$filtroProvincia = $_GET['provincia'] ?? '';
 $filtroComuna = $_GET['comuna'] ?? '';
+$filtroSector = $_GET['sector'] ?? '';
 $page = max(1, intval($_GET['page'] ?? 1));
 $perPage = 10;
 $offset = ($page - 1) * $perPage;
@@ -150,7 +185,9 @@ if (getUserType() === 'propietario') {
 }
 if ($filtroTipo) { $where .= " AND tipo = ?"; $params[] = $filtroTipo; }
 if ($filtroEstado) { $where .= " AND estado = ?"; $params[] = $filtroEstado; }
-if ($filtroComuna) { $where .= " AND comuna LIKE ?"; $params[] = "%{$filtroComuna}%"; }
+if ($filtroProvincia) { $where .= " AND provincia = ?"; $params[] = $filtroProvincia; }
+if ($filtroComuna) { $where .= " AND comuna = ?"; $params[] = $filtroComuna; }
+if ($filtroSector) { $where .= " AND sector = ?"; $params[] = $filtroSector; }
 
 $total = $pdo->prepare("SELECT COUNT(*) FROM propiedades $where");
 $total->execute($params);
@@ -285,7 +322,9 @@ if ($isAdmin) {
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-bold">Sector</label>
-                    <input type="text" name="sector" class="form-control" value="<?= sanitize($editProp['sector'] ?? '') ?>">
+                    <select name="sector" id="form-sector" class="form-select" required>
+                        <option value="<?= sanitize($editProp['sector'] ?? '') ?>"><?= sanitize($editProp['sector'] ?? 'Seleccionar comuna primero') ?></option>
+                    </select>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-bold">Latitud</label>
@@ -314,16 +353,20 @@ if ($isAdmin) {
                 
                 <?php if ($editProp && !empty($fotosEdit)): ?>
                 <div class="col-12 mt-3">
-                    <label class="form-label fw-bold text-danger"><i class="fas fa-trash-alt me-1"></i>Fotos Actuales (Marca la casilla para eliminar)</label>
+                    <label class="form-label fw-bold text-dark"><i class="fas fa-images me-1"></i>Fotos Actuales (Elige la principal o marca para eliminar)</label>
                     <div class="d-flex flex-wrap gap-3 mt-2 p-3 border rounded bg-light">
                         <?php 
                         foreach ($fotosEdit as $f): 
                             $imgSrc = SITE_URL . '/' . sanitize($f['ruta_imagen']);
                         ?>
-                        <div class="position-relative border rounded p-1 bg-white shadow-sm text-center">
+                        <div class="position-relative border rounded p-2 bg-white shadow-sm text-center" style="min-width: 140px;">
                             <img src="<?= $imgSrc ?>" class="rounded mb-2" style="width:120px; height:90px; object-fit:cover;">
+                            <div class="form-check d-flex justify-content-center align-items-center mb-1">
+                                <input type="radio" name="foto_principal" value="<?= $f['id'] ?>" id="principal_foto_<?= $f['id'] ?>" class="form-check-input me-2" <?= ($f['orden'] == 1 || count($fotosEdit) === 1) ? 'checked' : '' ?> style="cursor: pointer;">
+                                <label class="form-check-label text-success small fw-bold" for="principal_foto_<?= $f['id'] ?>" style="cursor: pointer;">Principal</label>
+                            </div>
                             <div class="form-check d-flex justify-content-center align-items-center">
-                                <input type="checkbox" name="eliminar_fotos[]" value="<?= $f['id'] ?>" id="del_foto_<?= $f['id'] ?>" class="form-check-input border-danger me-2" style="transform: scale(1.3); cursor: pointer;">
+                                <input type="checkbox" name="eliminar_fotos[]" value="<?= $f['id'] ?>" id="del_foto_<?= $f['id'] ?>" class="form-check-input border-danger me-2" style="transform: scale(1.1); cursor: pointer;">
                                 <label class="form-check-label text-danger small fw-bold" for="del_foto_<?= $f['id'] ?>" style="cursor: pointer;">Borrar</label>
                             </div>
                         </div>
@@ -343,7 +386,7 @@ if ($isAdmin) {
     <!-- Filtros -->
     <div class="card premium-card border-0 shadow p-3 mb-4">
         <form method="GET" class="row g-3 align-items-end">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="form-label fw-bold">Tipo</label>
                 <select name="tipo" class="form-select">
                     <option value="">Todos</option>
@@ -352,7 +395,16 @@ if ($isAdmin) {
                     <option value="terreno" <?= $filtroTipo==='terreno'?'selected':'' ?>>Terreno</option>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
+                <label class="form-label fw-bold">Provincia</label>
+                <select name="provincia" id="filtro-provincia-crud" class="form-select">
+                    <option value="">Todas</option>
+                    <option value="Elqui" <?= $filtroProvincia==='Elqui'?'selected':'' ?>>Elqui</option>
+                    <option value="Limarí" <?= $filtroProvincia==='Limarí'?'selected':'' ?>>Limarí</option>
+                    <option value="Choapa" <?= $filtroProvincia==='Choapa'?'selected':'' ?>>Choapa</option>
+                </select>
+            </div>
+            <div class="col-md-2">
                 <label class="form-label fw-bold">Estado</label>
                 <select name="estado_prop" class="form-select">
                     <option value="">Todos</option>
@@ -361,11 +413,25 @@ if ($isAdmin) {
                     <option value="vendido" <?= $filtroEstado==='vendido'?'selected':'' ?>>Vendido</option>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="form-label fw-bold">Comuna</label>
-                <input type="text" name="comuna" class="form-control" value="<?= sanitize($filtroComuna) ?>" placeholder="Buscar...">
+                <select name="comuna" id="filtro-comuna-crud" class="form-select">
+                    <option value="">Todas</option>
+                    <?php if ($filtroComuna): ?>
+                    <option value="<?= sanitize($filtroComuna) ?>" selected><?= sanitize($filtroComuna) ?></option>
+                    <?php endif; ?>
+                </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
+                <label class="form-label fw-bold">Sector</label>
+                <select name="sector" id="filtro-sector-crud" class="form-select">
+                    <option value="">Todos</option>
+                    <?php if ($filtroSector): ?>
+                    <option value="<?= sanitize($filtroSector) ?>" selected><?= sanitize($filtroSector) ?></option>
+                    <?php endif; ?>
+                </select>
+            </div>
+            <div class="col-md-2">
                 <button class="btn btn-warning text-dark fw-bold w-100"><i class="fas fa-filter me-1"></i>Filtrar</button>
             </div>
         </form>
@@ -404,7 +470,7 @@ if ($isAdmin) {
     <?php if ($totalPages > 1): ?>
     <nav><ul class="pagination justify-content-center">
         <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-        <li class="page-item <?= $i===$page?'active':'' ?>"><a class="page-link" href="?page=<?= $i ?>&tipo=<?= $filtroTipo ?>&estado_prop=<?= $filtroEstado ?>&comuna=<?= $filtroComuna ?>"><?= $i ?></a></li>
+        <li class="page-item <?= $i===$page?'active':'' ?>"><a class="page-link" href="?page=<?= $i ?>&tipo=<?= $filtroTipo ?>&estado_prop=<?= $filtroEstado ?>&provincia=<?= urlencode($filtroProvincia) ?>&comuna=<?= urlencode($filtroComuna) ?>&sector=<?= urlencode($filtroSector) ?>"><?= $i ?></a></li>
         <?php endfor; ?>
     </ul></nav>
     <?php endif; ?>
@@ -412,7 +478,47 @@ if ($isAdmin) {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    actualizarComunas('form-provincia', 'form-comuna');
+    // Formulario crear/editar propiedad
+    actualizarComunas('form-provincia', 'form-comuna', 'form-sector');
+    // Restaurar sector si se está editando una propiedad
+    <?php if ($editProp && $editProp['provincia'] && $editProp['comuna']): ?>
+    (function() {
+        const com = document.getElementById('form-comuna');
+        const sec = document.getElementById('form-sector');
+        // Cargar comunas de la provincia actual
+        const comunas = (typeof comunasPorProvincia !== 'undefined') ? (comunasPorProvincia['<?= addslashes($editProp['provincia']) ?>'] || []) : [];
+        if (com) {
+            com.innerHTML = '<option value="">Seleccionar</option>';
+            comunas.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c; opt.textContent = c;
+                if (c === '<?= addslashes($editProp['comuna']) ?>') opt.selected = true;
+                com.appendChild(opt);
+            });
+        }
+        // Cargar sectores de la comuna actual
+        if (sec && typeof sectoresPorComuna !== 'undefined') {
+            const sectores = sectoresPorComuna['<?= addslashes($editProp['comuna']) ?>'] || [];
+            sec.innerHTML = '<option value="">Seleccionar</option>';
+            sectores.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s; opt.textContent = s;
+                if (s === '<?= addslashes($editProp['sector']) ?>') opt.selected = true;
+                sec.appendChild(opt);
+            });
+        }
+    })();
+    <?php endif; ?>
+
+    // Formulario de filtros del listado
+    actualizarComunas('filtro-provincia-crud', 'filtro-comuna-crud', 'filtro-sector-crud');
+    // Si ya hay una comuna seleccionada en los filtros, cargar sus sectores
+    const comunaActual = document.getElementById('filtro-comuna-crud');
+    if (comunaActual && comunaActual.value) {
+        actualizarSectores('filtro-comuna-crud', 'filtro-sector-crud');
+        const secActual = document.getElementById('filtro-sector-crud');
+        if (secActual) secActual.value = '<?= addslashes($filtroSector) ?>';
+    }
 });
 </script>
 

@@ -170,12 +170,13 @@ function buscarPropiedades() {
     const provincia = document.getElementById('filtro-provincia')?.value || '';
     const comuna = document.getElementById('filtro-comuna')?.value || '';
     const tipo = document.getElementById('filtro-tipo')?.value || '';
+    const sector = document.getElementById('filtro-sector')?.value || '';
     const container = document.getElementById('resultados-busqueda');
     if (!container) return;
 
     container.innerHTML = '<div class="text-center py-5"><i class="fas fa-spinner fa-spin fa-3x text-warning"></i><p class="mt-3">Buscando propiedades...</p></div>';
 
-    fetch(`api/propiedades.php?action=buscar&provincia=${encodeURIComponent(provincia)}&comuna=${encodeURIComponent(comuna)}&tipo=${encodeURIComponent(tipo)}`)
+    fetch(`api/propiedades.php?action=buscar&provincia=${encodeURIComponent(provincia)}&comuna=${encodeURIComponent(comuna)}&tipo=${encodeURIComponent(tipo)}&sector=${encodeURIComponent(sector)}`)
         .then(r => r.json())
         .then(data => {
             if (!data.length) {
@@ -206,14 +207,43 @@ function buscarPropiedades() {
         });
 }
 
-/* ========== COMUNAS DINÁMICAS ========== */
+/* ========== COMUNAS Y SECTORES DINÁMICOS ========== */
 const comunasPorProvincia = {
     'Elqui': ['La Serena','Coquimbo','Andacollo','La Higuera','Paihuano','Vicuña'],
     'Limarí': ['Ovalle','Combarbalá','Monte Patria','Punitaqui','Río Hurtado'],
     'Choapa': ['Illapel','Canela','Los Vilos','Salamanca']
 };
 
-function actualizarComunas(selectProvincia, selectComuna) {
+const sectoresPorComuna = {
+    'La Serena': [
+        'El Milagro','Las Compañías','Centro','La Florida','Bello Horizonte',
+        'Las Minillas','El Llano','La Antena','Rinconada','Peñuelas',
+        'El Faro','Las Rojas','Los Aromos','Alto Serena','Tierras Blancas'
+    ],
+    'Coquimbo': [
+        'La Herradura','Tierras Blancas','El Faro','Guanaqueros','Centro',
+        'Sindempart','Los Peñascos','Barrio Industrial','Puerto','Pan de Azúcar',
+        'El Sauce','La Cantera','Aldea del Mar','Villa Galilea'
+    ],
+    'Andacollo': ['Centro','El Panul','Chanchoquín'],
+    'La Higuera': ['Centro','Los Choros','Punta de Choros'],
+    'Paihuano': ['Centro','Montegrande','Pisco Elqui','Horcon'],
+    'Vicuña': ['Centro','El Romeral','Rivadavia','Peralillo'],
+    'Ovalle': [
+        'Centro','El Olivar','Loma Alta','El Palqui','Las Ramadas',
+        'Cerrillos de Tamaya','Sotaquí','Hurtado'
+    ],
+    'Combarbalá': ['Centro','Cogotí','Ramadilla'],
+    'Monte Patria': ['Centro','Rapel','Illapel Viejo','Chañaral Alto'],
+    'Punitaqui': ['Centro','Pachingo','Tuquí'],
+    'Río Hurtado': ['Centro','Samo Alto','Angostura','Pichasca'],
+    'Illapel': ['Centro','Chincolco','Canela Baja','Caimanes'],
+    'Canela': ['Centro','Canela Alta','Canela Baja','Coirón'],
+    'Los Vilos': ['Centro','Pichidangui','Caimanes','Quilimari'],
+    'Salamanca': ['Centro','Cuncumén','Mincha','Tranquilla']
+};
+
+function actualizarComunas(selectProvincia, selectComuna, selectSector) {
     const prov = document.getElementById(selectProvincia);
     const com = document.getElementById(selectComuna);
     if (!prov || !com) return;
@@ -224,8 +254,30 @@ function actualizarComunas(selectProvincia, selectComuna) {
         comunas.forEach(c => {
             com.innerHTML += `<option value="${c}">${c}</option>`;
         });
+        // Resetear sectores al cambiar provincia
+        if (selectSector) {
+            const sec = document.getElementById(selectSector);
+            if (sec) sec.innerHTML = '<option value="">Todos los sectores</option>';
+        }
+    });
+
+    com.addEventListener('change', function() {
+        if (selectSector) actualizarSectores(selectComuna, selectSector);
     });
 }
+
+function actualizarSectores(selectComuna, selectSector) {
+    const com = document.getElementById(selectComuna);
+    const sec = document.getElementById(selectSector);
+    if (!com || !sec) return;
+
+    sec.innerHTML = '<option value="">Todos los sectores</option>';
+    const sectores = sectoresPorComuna[com.value] || [];
+    sectores.forEach(s => {
+        sec.innerHTML += `<option value="${s}">${s}</option>`;
+    });
+}
+
 
 /* ========== PROPERTY CAROUSEL ========== */
 function initCarousel(containerId) {

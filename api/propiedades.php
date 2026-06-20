@@ -12,6 +12,7 @@ if ($action === 'buscar') {
     $provincia = $_GET['provincia'] ?? '';
     $comuna = $_GET['comuna'] ?? '';
     $tipo = $_GET['tipo'] ?? '';
+    $sector = $_GET['sector'] ?? '';
 
     $where = "WHERE p.estado = 'activo'";
     $params = [];
@@ -27,6 +28,10 @@ if ($action === 'buscar') {
     if ($tipo) {
         $where .= " AND p.tipo = ?";
         $params[] = $tipo;
+    }
+    if ($sector) {
+        $where .= " AND p.sector LIKE ?";
+        $params[] = "%$sector%";
     }
 
     $sql = "SELECT p.id, p.codigo, p.tipo, p.precio_clp, p.precio_uf, p.provincia, p.comuna, p.sector,

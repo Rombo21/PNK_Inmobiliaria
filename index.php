@@ -49,7 +49,7 @@ $propiedades = $stmtProps->fetchAll();
     <div class="card premium-card border-0 shadow p-4">
         <h2 class="text-center mb-4 fw-bold"><i class="fas fa-search text-warning me-2"></i>Buscar Propiedades</h2>
         <div class="row g-3 align-items-end">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="form-label fw-bold">Tipo</label>
                 <select id="filtro-tipo" class="form-select">
                     <option value="">Todos</option>
@@ -58,7 +58,7 @@ $propiedades = $stmtProps->fetchAll();
                     <option value="terreno">Terreno</option>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="form-label fw-bold">Provincia</label>
                 <select id="filtro-provincia" class="form-select">
                     <option value="">Todas</option>
@@ -74,6 +74,12 @@ $propiedades = $stmtProps->fetchAll();
                 </select>
             </div>
             <div class="col-md-3">
+                <label class="form-label fw-bold">Sector</label>
+                <select id="filtro-sector" class="form-select">
+                    <option value="">Todos los sectores</option>
+                </select>
+            </div>
+            <div class="col-md-2">
                 <button onclick="buscarPropiedades()" class="btn btn-warning text-dark fw-bold w-100 py-2">
                     <i class="fas fa-search me-1"></i> Buscar
                 </button>
@@ -113,7 +119,7 @@ $propiedades = $stmtProps->fetchAll();
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        actualizarComunas('filtro-provincia', 'filtro-comuna');
+        actualizarComunas('filtro-provincia', 'filtro-comuna', 'filtro-sector');
     });
 </script>
 
